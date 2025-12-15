@@ -6,7 +6,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
             <Header />
             <MainSidebar />
-            <main className="lg:ml-72 pt-20 min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+            <main className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
                     {children}
                 </div>

@@ -52,11 +52,25 @@ html {
 }
 
 /* Admin sidebar layout adjustments */
-aside[data-collapsed="true"] ~ main {
+aside:not([data-sidebar="main"])[data-collapsed="true"] ~ main {
   margin-left: 70px !important;
 }
 
-aside[data-collapsed="false"] ~ main,
-aside:not([data-collapsed]) ~ main {
+aside:not([data-sidebar="main"])[data-collapsed="false"] ~ main,
+aside:not([data-sidebar="main"]):not([data-collapsed]) ~ main {
   margin-left: 260px !important;
+}
+
+/* Main sidebar layout adjustments */
+@media (min-width: 1024px) {
+  /* When main sidebar is collapsed */
+  aside[data-sidebar="main"][data-collapsed="true"] ~ main {
+    margin-left: 70px !important;
+  }
+
+  /* When main sidebar is expanded */
+  aside[data-sidebar="main"][data-collapsed="false"] ~ main,
+  aside[data-sidebar="main"]:not([data-collapsed]) ~ main {
+    margin-left: 288px !important; /* w-72 = 288px */
+  }
 }
