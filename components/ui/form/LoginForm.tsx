@@ -5,7 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/auth/useAuth";
 
-export default function LoginForm() {
+interface LoginFormProps {
+    onSuccess?: () => void;
+    hideFooter?: boolean;
+}
+
+export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormProps) {
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);
@@ -25,12 +30,19 @@ export default function LoginForm() {
     async function onSubmit(e: React.FormEvent) {
         e.preventDefault();
         setErr(null);
+        setLoading(true);
         try {
             await login(username, password);
-            router.push('/');
             localStorage.removeItem("newUser");
+            if (onSuccess) {
+                onSuccess();
+            } else {
+                router.push('/');
+            }
         } catch (error: any) {
             setErr(error?.detail || 'Login failed');
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -99,12 +111,14 @@ export default function LoginForm() {
             </button>
 
             {/* Footer */}
-            <div className="text-center mt-8 pt-6 border-t border-gray-200 text-sm text-gray-600">
-                Chưa có tài khoản?{" "}
-                <Link href="/auth/register" className="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition-colors">
-                    Đăng ký ngay
-                </Link>
-            </div>
+            {!hideFooter && (
+                <div className="text-center mt-8 pt-6 border-t border-gray-200 text-sm text-gray-600">
+                    Chưa có tài khoản?{" "}
+                    <Link href="/register" className="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition-colors">
+                        Đăng ký ngay
+                    </Link>
+                </div>
+            )}
         </form>
     );
 }

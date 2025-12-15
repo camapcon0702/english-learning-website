@@ -7,18 +7,17 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { User } from "@/types/auth.types";
 import Link from "next/link";
 import clsx from "clsx";
+import LoginModal from "@/components/ui/modal/LoginModal";
+import RegisterModal from "@/components/ui/modal/RegisterModal";
 
 interface HeaderProps {
   className?: string;
 }
 
 export function Header({ className }: HeaderProps) {
-  const [user] = useState<User>({
-    id: 1,
-    name: "Nguyen Van A",
-    role: "admin",
-    avatarUrl: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  });
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const { logout } = useAuth();
 
   const initials = useMemo(() => {
@@ -97,14 +96,22 @@ export function Header({ className }: HeaderProps) {
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {!user ? (
-              <Link
-                href="/auth/login"
-                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl px-6 py-2.5 text-sm cursor-pointer transition-all hover:from-orange-600 hover:to-orange-700 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                Đăng nhập
-              </Link>
+              <>
+                <button
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-xl px-6 py-2.5 text-sm transition-all active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  Đăng nhập
+                </button>
+                <button
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl px-6 py-2.5 text-sm transition-all hover:from-orange-600 hover:to-orange-700 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  Đăng ký
+                </button>
+              </>
             ) : (
               <Dropdown
                 menu={{ items: userMenu }}
@@ -155,6 +162,24 @@ export function Header({ className }: HeaderProps) {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToRegister={() => {
+          setIsLoginModalOpen(false);
+          setIsRegisterModalOpen(true);
+        }}
+      />
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onSwitchToLogin={() => {
+          setIsRegisterModalOpen(false);
+          setIsLoginModalOpen(true);
+        }}
+      />
     </header>
   );
 }

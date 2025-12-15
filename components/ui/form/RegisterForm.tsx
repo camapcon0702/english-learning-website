@@ -13,7 +13,12 @@ import {
 import { useAuth } from "@/hooks/auth/useAuth";
 import { useRouter } from "next/navigation";
 
-export default function RegisterForm() {
+interface RegisterFormProps {
+    onSuccess?: () => void;
+    hideFooter?: boolean;
+}
+
+export default function RegisterForm({ onSuccess, hideFooter = false }: RegisterFormProps) {
     const [loading, setLoading] = useState(false);
     const { register } = useAuth();
     const router = useRouter();
@@ -86,7 +91,11 @@ export default function RegisterForm() {
         try {
             await register(form.username, form.password, form.email, form.fullname);
             alert("Đăng ký thành công");
-            router.push('/auth/login')
+            if (onSuccess) {
+                onSuccess();
+            } else {
+                router.push('/login');
+            }
         } catch (err: any) {
             const respErr = {
                 fullname: "",
@@ -232,12 +241,14 @@ export default function RegisterForm() {
                 </button>
             </form>
 
-            <div className="text-center mt-4 text-sm text-gray-500">
-                Đã có tài khoản?{" "}
-                <Link href="/auth/login" className="text-indigo-600 font-semibold hover:underline">
-                    Đăng nhập
-                </Link>
-            </div>
+            {!hideFooter && (
+                <div className="text-center mt-4 text-sm text-gray-500">
+                    Đã có tài khoản?{" "}
+                    <Link href="/login" className="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition-colors">
+                        Đăng nhập
+                    </Link>
+                </div>
+            )}
         </>
     );
 }
