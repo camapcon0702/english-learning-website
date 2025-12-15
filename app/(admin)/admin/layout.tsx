@@ -5,8 +5,15 @@ import AddCardOutlined from "@mui/icons-material/AddCardOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const sidebarItems: SidebarMenuItem[] = [
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: <DashboardIcon />,
+    to: "/admin",
+  },
   {
     id: "grammar-management",
     label: "Quản lý ngữ pháp",
@@ -40,11 +47,13 @@ export default function AdminLayout({
 }) {
   return (
     <AuthProvider>
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-gray-50">
         <Header />
-        <div className="flex flex-1">
-          <SideNavigation items={sidebarItems} className="py-6" />
-          <main className="flex-1 overflow-y-auto py-6">{children}</main>
+        <div className="flex flex-1 pt-20">
+          <SideNavigation items={sidebarItems} />
+          <main className="flex-1 overflow-y-auto transition-all duration-300 ml-[260px]">
+            {children}
+          </main>
         </div>
       </div>
     </AuthProvider>

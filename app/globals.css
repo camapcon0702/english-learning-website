@@ -50,3 +50,13 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Admin sidebar layout adjustments */
+aside[data-collapsed="true"] ~ main {
+  margin-left: 70px !important;
+}
+
+aside[data-collapsed="false"] ~ main,
+aside:not([data-collapsed]) ~ main {
+  margin-left: 260px !important;
+}

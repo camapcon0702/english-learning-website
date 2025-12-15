@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export interface SidebarMenuItem {
     id: string;
@@ -31,8 +31,28 @@ export function SideNavigation({
     allowMultiOpen = false,
 }: SidebarProps) {
     const [internalActive, setInternalActive] = useState<string | undefined>(controlledActiveId);
-    const activeId = controlledActiveId ?? internalActive;
     const router = useRouter();
+    const pathname = usePathname();
+    
+    // Auto-detect active item based on current pathname
+    const getActiveIdFromPath = () => {
+        if (pathname) {
+            // First try exact match
+            const exactMatch = items.find(item => item.to && pathname === item.to);
+            if (exactMatch) return exactMatch.id;
+            
+            // Then try prefix match (but not for root admin path)
+            const prefixMatch = items.find(item => 
+                item.to && 
+                item.to !== "/admin" && 
+                pathname.startsWith(item.to)
+            );
+            if (prefixMatch) return prefixMatch.id;
+        }
+        return undefined;
+    };
+    
+    const activeId = controlledActiveId ?? internalActive ?? getActiveIdFromPath();
 
     const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
     const [collapsed, setCollapsed] = useState<boolean>(() =>
@@ -44,6 +64,15 @@ export function SideNavigation({
     useEffect(() => {
         localStorage.setItem("sidebar-collapsed", String(collapsed));
     }, [collapsed]);
+
+    // Update active state when pathname changes
+    useEffect(() => {
+        const detectedActiveId = getActiveIdFromPath();
+        if (detectedActiveId && controlledActiveId === undefined) {
+            setInternalActive(detectedActiveId);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname, items, controlledActiveId]);
 
     // useEffect(() => {
     //     if (controlledActiveId !== undefined) {
@@ -140,21 +169,22 @@ export function SideNavigation({
 
     return (
         <aside
+            data-collapsed={collapsed}
             className={clsx(
-                "relative h-screen bg-orange-400  px-5 py-5 text-white transition-all duration-300",
+                "fixed left-0 top-20 bottom-0 bg-gradient-to-b from-orange-500 to-orange-600 px-5 py-5 text-white transition-all duration-300 shadow-lg overflow-y-auto",
                 collapsed ? "w-[70px] px-2" : "w-[260px]",
                 className
             )}
         >
             <button
-                className="absolute mt-16 right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-white/10 hover:bg-white/20"
+                className="sticky top-4 right-4 flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-white/10 hover:bg-white/20 transition-all ml-auto mb-4"
                 onClick={() => setCollapsed(!collapsed)}
                 aria-label="Toggle sidebar"
             >
                 {collapsed ? <MenuIcon /> : <MenuOpenIcon />}
             </button>
 
-            <nav className="mt-28">{renderItems(items)}</nav>
+            <nav>{renderItems(items)}</nav>
         </aside>
     );
 }
