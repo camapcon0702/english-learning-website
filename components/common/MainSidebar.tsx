@@ -1,0 +1,142 @@
+"use client";
+
+import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import clsx from "clsx";
+
+const navigationItems = [
+  { 
+    label: "Trang chủ", 
+    icon: "🏠", 
+    path: "/",
+    description: "Dashboard chính"
+  },
+  { 
+    label: "Ngữ pháp", 
+    icon: "📚", 
+    path: "/grammar",
+    description: "Học ngữ pháp"
+  },
+  { 
+    label: "Từ vựng", 
+    icon: "📖", 
+    path: "/vocabulary",
+    description: "Học từ vựng"
+  },
+  { 
+    label: "Bài tập", 
+    icon: "✍️", 
+    path: "/exercise",
+    description: "Luyện tập"
+  },
+  { 
+    label: "Mini Game", 
+    icon: "🎮", 
+    path: "/minigame",
+    description: "Trò chơi"
+  },
+  { 
+    label: "Flash Card", 
+    icon: "🃏", 
+    path: "/flashcard",
+    description: "Thẻ ghi nhớ"
+  },
+  { 
+    label: "Lịch Học", 
+    icon: "📅", 
+    path: "/schedule",
+    description: "Lịch học tập"
+  },
+];
+
+export function MainSidebar() {
+  const pathname = usePathname();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="lg:hidden fixed top-5 left-4 z-[1000] p-2.5 bg-white rounded-xl shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Mobile overlay */}
+      {isMobileOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[997] transition-opacity"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={clsx(
+        "fixed left-0 top-20 bottom-0 w-72 bg-white/95 backdrop-blur-md border-r border-gray-200/80 overflow-y-auto z-[998] transition-transform duration-300 ease-out",
+        "lg:translate-x-0 shadow-lg lg:shadow-none",
+        isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      )}>
+        <div className="p-6">
+          <div className="mb-6 pb-6 border-b border-gray-200">
+            <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
+              Menu chính
+            </h2>
+          </div>
+          <nav className="space-y-2">
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.path || pathname.startsWith(item.path + "/");
+
+              return (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  onClick={() => setIsMobileOpen(false)}
+                  className={clsx(
+                    "flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-200 group relative",
+                    "hover:scale-[1.02]",
+                    isActive
+                      ? "bg-gradient-to-r from-orange-50 to-orange-50/50 text-orange-700 shadow-sm border border-orange-200/50"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                  )}
+                >
+                  <span className={clsx(
+                    "text-2xl flex-shrink-0 transition-transform duration-200",
+                    isActive ? "scale-110" : "group-hover:scale-110"
+                  )}>
+                    {item.icon}
+                  </span>
+                  <div className="flex flex-col min-w-0 flex-1">
+                    <span className={clsx(
+                      "font-semibold text-sm leading-tight",
+                      isActive ? "text-orange-700" : "text-gray-900"
+                    )}>
+                      {item.label}
+                    </span>
+                    <span className={clsx(
+                      "text-xs mt-1 leading-tight",
+                      isActive ? "text-orange-600" : "text-gray-500"
+                    )}>
+                      {item.description}
+                    </span>
+                  </div>
+                  {isActive && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div>
+                  )}
+                  {!isActive && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      </aside>
+    </>
+  );
+}
+

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import clsx from "clsx";
 import ModuleCard, { ModuleCardProps } from "./ModuleCard";
 
 export interface ModuleGridProps {
@@ -63,20 +64,16 @@ export default function ModulesGrid({
     return (
         <section
             className={[
-                "w-full mt-10 bg-transparent",
+                "w-full bg-transparent",
                 className || ""
             ].join(" ")}
             aria-labelledby="module-grid-title"
         >
             <div
-                className={`
-                    grid gap-5.5 mx-auto mt-2
-                    max-w-300
-                    ${gridColumns}
-                    px-0
-                    box-border
-                    max-[420px]:grid-cols-1 max-[420px]:gap-3.5
-                `}
+                className={clsx(
+                    "grid gap-6 lg:gap-8 mx-auto",
+                    gridColumns
+                )}
                 role="list"
                 aria-label="Danh sách module"
             >

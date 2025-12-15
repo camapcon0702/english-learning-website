@@ -1,16 +1,19 @@
 export default function CalendarPage() {
     return (
-        <div className="min-h-screen bg-orange-100 p-8">
-            <main className="max-w-7xl mx-auto">
-                <div className="bg-orange-50 rounded-xl shadow-lg p-12 border border-orange-100">
-                    <h1 className="text-5xl font-bold mb-6 text-orange-600">
-                        Schedule
-                    </h1>
-                    <p className="text-xl text-gray-600 leading-relaxed">
-                        Khám phá phương pháp học Tiếng Anh đơn giản hiệu quả
-                    </p>
-                </div>
-            </main>
+        <div className="max-w-7xl mx-auto">
+            <div className="mb-8">
+                <h1 className="text-4xl font-bold mb-3 text-gray-900">
+                    Lịch học tập
+                </h1>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
+                    Quản lý và theo dõi lịch học tập của bạn. 
+                    Lập kế hoạch học tập hiệu quả và đạt mục tiêu của mình.
+                </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                <p className="text-gray-600">Nội dung đang được phát triển...</p>
+            </div>
         </div>
     );
 }

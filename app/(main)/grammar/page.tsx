@@ -24,18 +24,23 @@ const grammarSubModule: ModuleCardProps[] = [
 
 export default function GrammarPage() {
     return (
-        <div className="min-h-screen bg-orange-100 p-8">
-            <main className="max-w-7xl mx-auto">
-                <div className="bg-orange-50 rounded-xl shadow-lg p-12 border border-orange-100">
-                    <h1 className="text-5xl font-bold mb-6 text-orange-600">
-                        Ngữ pháp
-                    </h1>
-                    <p className="text-xl text-gray-600 leading-relaxed">
-                        Khám phá phương pháp học Tiếng Anh đơn giản hiệu quả
-                    </p>
-                    <ModulesGrid modules={grammarSubModule} gridColumns="grid-cols-4" />
-                </div>
-            </main>
+        <div className="max-w-7xl mx-auto">
+            <div className="mb-8">
+                <h1 className="text-4xl font-bold mb-3 text-gray-900">
+                    Ngữ pháp Tiếng Anh
+                </h1>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
+                    Học và nắm vững các quy tắc ngữ pháp cơ bản và nâng cao. 
+                    Từ các thì cơ bản đến cấu trúc câu phức tạp.
+                </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                <h2 className="text-2xl font-semibold mb-6 text-gray-900">
+                    Chủ đề ngữ pháp
+                </h2>
+                <ModulesGrid modules={grammarSubModule} gridColumns="grid-cols-3" />
+            </div>
         </div>
     );
 }

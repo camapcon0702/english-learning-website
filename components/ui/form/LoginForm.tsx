@@ -35,15 +35,15 @@ export default function LoginForm() {
     }
 
     return (
-        <form onSubmit={onSubmit} className="space-y-5" aria-describedby="login-error">
+        <form onSubmit={onSubmit} className="space-y-6" aria-describedby="login-error">
             {err && (
-                <div id="login-error" role="alert" className="text-sm text-red-600 bg-red-50 p-3 rounded">
+                <div id="login-error" role="alert" className="text-sm text-red-700 bg-red-50 border border-red-200 p-4 rounded-xl">
                     {err}
                 </div>
             )}
 
             <div>
-                <label className="block font-medium text-gray-700 mb-1" htmlFor="username">
+                <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="username">
                     Tên đăng nhập
                 </label>
                 <input
@@ -51,8 +51,8 @@ export default function LoginForm() {
                     name="username"
                     type="text"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 outline-none transition"
-                    placeholder="Tên đăng nhập..."
+                    className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all bg-white shadow-sm hover:border-gray-400"
+                    placeholder="Nhập tên đăng nhập..."
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     disabled={loading}
@@ -61,7 +61,7 @@ export default function LoginForm() {
             </div>
 
             <div>
-                <label className="block font-medium text-gray-700 mb-1" htmlFor="password">
+                <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="password">
                     Mật khẩu
                 </label>
                 <input
@@ -70,7 +70,7 @@ export default function LoginForm() {
                     type="password"
                     minLength={6}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 outline-none transition"
+                    className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all bg-white shadow-sm hover:border-gray-400"
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -80,11 +80,11 @@ export default function LoginForm() {
             </div>
 
             <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
-                    <input type="checkbox" className="w-4 h-4" />
+                <label className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">
+                    <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
                     Ghi nhớ đăng nhập
                 </label>
-                <Link href="/forgot-password" className="text-indigo-600 hover:text-indigo-500 font-medium">
+                <Link href="/forgot-password" className="text-orange-600 hover:text-orange-700 font-semibold transition-colors">
                     Quên mật khẩu?
                 </Link>
             </div>
@@ -92,16 +92,16 @@ export default function LoginForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-400 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-orange-700 transform hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
                 aria-busy={loading}
             >
                 {loading ? "Đang xử lý..." : "Đăng nhập"}
             </button>
 
             {/* Footer */}
-            <div className="text-center mt-6 text-sm text-gray-500">
+            <div className="text-center mt-8 pt-6 border-t border-gray-200 text-sm text-gray-600">
                 Chưa có tài khoản?{" "}
-                <Link href="/auth/register" className="text-indigo-600 font-semibold hover:underline">
+                <Link href="/auth/register" className="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition-colors">
                     Đăng ký ngay
                 </Link>
             </div>

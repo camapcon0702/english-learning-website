@@ -1,14 +1,16 @@
-import { Header, Navigation } from "@/components";
+import { Header, MainSidebar } from "@/components";
 import { AuthProvider } from "@/hooks/auth/useAuth";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
-        <>
-            <AuthProvider>
-                <Header />
-                <Navigation />
-                {children}
-            </AuthProvider>
-        </>
+        <AuthProvider>
+            <Header />
+            <MainSidebar />
+            <main className="lg:ml-72 pt-20 min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+                    {children}
+                </div>
+            </main>
+        </AuthProvider>
     );
 }

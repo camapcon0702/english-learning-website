@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
+import clsx from "clsx";
 
 export interface ModuleCardProps {
     moduleName?: string;
@@ -29,49 +30,68 @@ export default function ModuleCard({
             onClick={handleClick}
             role={navigateTo ? "button" : "group"}
             tabIndex={navigateTo ? 0 : -1}
-            className={[
-                "w-53 h-50 select-none rounded-2xl bg-white p-5 text-center shadow-[0_8px_20px_rgba(20,30,60,0.08)]",
-                "transition-transform duration-200 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_rgba(20,30,60,0.12)]",
+            className={clsx(
+                "group w-full select-none rounded-2xl bg-white p-6 lg:p-8 text-left",
+                "border border-gray-200/80 shadow-sm",
+                "transition-all duration-300 ease-out",
+                "hover:border-orange-300 hover:shadow-xl hover:-translate-y-2",
+                "hover:bg-gradient-to-br hover:from-white hover:to-orange-50/30",
                 navigateTo ? "cursor-pointer" : "cursor-default",
-                className || "",
-            ].join(" ")}
+                className
+            )}
         >
             <div
                 className="
-                    relative mb-3 flex items-center justify-center
-                    w-21 h-21 mx-auto rounded-2xl
-                    bg-linear-to-b from-[#eef2ff] to-[#f3e8ff]
-                    shadow-[0_6px_16px_rgba(62,36,106,0.14)]
-                    "
+                    relative mb-5 flex items-center justify-center
+                    w-20 h-20 rounded-2xl
+                    bg-gradient-to-br from-orange-100 via-orange-50 to-amber-50
+                    border border-orange-200/50
+                    shadow-sm
+                    group-hover:shadow-md group-hover:scale-110
+                    transition-all duration-300
+                "
             >
-                <div
-                    className="
-                        bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)]
-                        w-full h-full flex items-center justify-center
-                    "
-                >
-                    {moduleIcon ? (
-                        <img
-                            src={moduleIcon}
-                            alt=""
-                            className="
-                                w-[70%] h-[70%] object-contain
-                                pointer-events-none select-none
-                            "
-                        />
-                    ) : (
-                        <div className="text-gray-400 text-sm">No Icon</div>
-                    )}
-                </div>
+                {moduleIcon ? (
+                    <img
+                        src={moduleIcon}
+                        alt=""
+                        className="
+                            w-12 h-12 object-contain
+                            pointer-events-none select-none
+                            group-hover:scale-110 transition-transform duration-300
+                        "
+                    />
+                ) : (
+                    <div className="text-gray-400 text-sm">No Icon</div>
+                )}
             </div>
 
-            <div className="mb-2 text-base font-semibold text-[#0f2130]">
+            <h3 className="mb-3 text-xl font-bold text-gray-900 group-hover:text-orange-700 transition-colors">
                 {moduleName}
-            </div>
+            </h3>
 
-            <div className="text-sm font-medium text-[#7f8b98] leading-snug">
+            <p className="text-sm text-gray-600 leading-relaxed">
                 {moduleDescription}
-            </div>
+            </p>
+
+            {navigateTo && (
+                <div className="mt-4 flex items-center text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-sm font-semibold mr-2">Bắt đầu học</span>
+                    <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                        />
+                    </svg>
+                </div>
+            )}
         </div>
     );
 }
