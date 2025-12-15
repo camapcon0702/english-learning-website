@@ -1,2 +1,3 @@
-export { Header } from "./common/header";
-export { Navigation } from "./common/navigation";
+export { Header } from "./common/Header";
+export { Navigation } from "./common/Navigation";
+export { SideNavigation } from "./common/SideNavigation";
