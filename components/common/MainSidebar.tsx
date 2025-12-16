@@ -21,12 +21,6 @@ const navigationItems = [
     description: "Học ngữ pháp"
   },
   { 
-    label: "Từ vựng", 
-    icon: "📖", 
-    path: "/vocabulary",
-    description: "Học từ vựng"
-  },
-  { 
     label: "Bài tập", 
     icon: "✍️", 
     path: "/exercise",
@@ -42,7 +36,7 @@ const navigationItems = [
     label: "Flash Card", 
     icon: "🃏", 
     path: "/flashcard",
-    description: "Thẻ ghi nhớ"
+    description: "Học từ vựng"
   },
   { 
     label: "Lịch Học", 

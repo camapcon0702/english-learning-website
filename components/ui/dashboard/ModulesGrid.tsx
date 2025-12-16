@@ -20,12 +20,6 @@ const defaultModules: ModuleCardProps[] = [
         navigateTo: "/grammar"
     },
     {
-        moduleName: "Từ vựng",
-        moduleDescription: "Học từ vựng theo chủ đề.",
-        moduleIcon: "./images/icon_vocabulary.png",
-        navigateTo: "/vocabulary"
-    },
-    {
         moduleName: "Bài tập",
         moduleDescription: "Luyện tập kiến thức đã học.",
         moduleIcon: "./images/icon_exercise.png",
@@ -39,7 +33,7 @@ const defaultModules: ModuleCardProps[] = [
     },
     {
         moduleName: "Flash Card",
-        moduleDescription: "Ôn tập với Flash Card.",
+        moduleDescription: "Học từ vựng với Flash Card.",
         moduleIcon: "./images/icon_flashcard.png",
         navigateTo: "/flashcard"
     },
