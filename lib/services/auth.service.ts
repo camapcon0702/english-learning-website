@@ -151,3 +151,62 @@ export async function registerApi(
   }
 }
 
+export interface CurrentUserResponse {
+  status: number;
+  message: string;
+  data: {
+    id: string;
+    fullName: string;
+    email: string;
+    role: string;
+    createdAt: string | null;
+  };
+}
+
+/**
+ * Get current logged in user
+ * @returns Promise with current user response
+ * @throws Error if request fails
+ */
+export async function getCurrentUserApi(): Promise<CurrentUserResponse> {
+  try {
+    const token = localStorage.getItem('auth_token');
+    
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+
+    const response = await fetch(`${API_BASE_URL}${API_CONFIG.ENDPOINTS.USER.CURRENT_USER}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const error: ApiError = {
+        status: response.status,
+        message: data.message || 'Failed to get user information',
+        detail: data.detail || data.message || 'An error occurred while fetching user information',
+      };
+      throw error;
+    }
+
+    return data as CurrentUserResponse;
+  } catch (error: any) {
+    if (error.status) {
+      throw error;
+    }
+    
+    const networkError: ApiError = {
+      status: 0,
+      message: 'Network error',
+      detail: error.message || 'Unable to connect to the server. Please check your connection.',
+    };
+    throw networkError;
+  }
+}
+

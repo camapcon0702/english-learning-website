@@ -8,6 +8,9 @@ export const API_CONFIG = {
             REFRESH: "/auth/token/refresh",
             REGISTER: "/auth/register"
         },
+        USER: {
+            CURRENT_USER: "/api/user/current-user"
+        },
     }
 } as const;
 

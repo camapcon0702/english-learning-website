@@ -4,7 +4,6 @@ import React, { useMemo, useState } from "react";
 import { Dropdown, type MenuProps } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { useAuth } from "@/hooks/auth/useAuth";
-import { User } from "@/types/auth.types";
 import Link from "next/link";
 import clsx from "clsx";
 import LoginModal from "@/components/ui/modal/LoginModal";
@@ -15,14 +14,13 @@ interface HeaderProps {
 }
 
 export function Header({ className }: HeaderProps) {
-  const [user, setUser] = useState<User | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
-  const { logout } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const initials = useMemo(() => {
-    if (!user?.name) return "A";
-    const parts = user.name.trim().split(/\s+/);
+    if (!user?.fullName) return "A";
+    const parts = user.fullName.trim().split(/\s+/);
     if (parts.length === 1) return parts[0].slice(0, 1).toUpperCase();
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   }, [user]);
@@ -34,7 +32,7 @@ export function Header({ className }: HeaderProps) {
   const userMenu: MenuProps["items"] = [
     {
       key: "profile",
-      label: "Thông tin cá nhân",
+      label: <Link href="/profile">Thông tin cá nhân</Link>,
       icon: <UserOutlined />,
     },
     {
@@ -97,7 +95,7 @@ export function Header({ className }: HeaderProps) {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
-            {!user ? (
+            {!isAuthenticated || !user ? (
               <>
                 <button
                   onClick={() => setIsLoginModalOpen(true)}
@@ -127,7 +125,7 @@ export function Header({ className }: HeaderProps) {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={user.avatarUrl}
-                        alt={`${user.name} avatar`}
+                        alt={`${user.fullName} avatar`}
                         draggable={false}
                         className="w-full h-full rounded-full object-cover"
                       />
@@ -135,16 +133,13 @@ export function Header({ className }: HeaderProps) {
                       <span className="text-sm font-semibold">{initials}</span>
                     )}
                   </div>
-                  <div className="hidden xl:flex flex-col gap-0">
+                  <div className="hidden sm:flex flex-col gap-0">
                     <div className="font-semibold text-sm text-gray-900 leading-tight">
-                      {user.name}
-                    </div>
-                    <div className="text-xs text-gray-500 leading-tight">
-                      {user.role ?? "Người dùng"}
+                      Xin chào, {user.fullName}
                     </div>
                   </div>
                   <svg
-                    className="hidden xl:block w-4 h-4 text-gray-400"
+                    className="hidden sm:block w-4 h-4 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
