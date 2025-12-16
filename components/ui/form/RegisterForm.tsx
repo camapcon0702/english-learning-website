@@ -2,16 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 import {
-    validateUsername,
     validateEmail,
-    validatePhone,
     validatePassword,
     validateFullname,
 } from "@/lib/regex";
 import { useAuth } from "@/hooks/auth/useAuth";
-import { useRouter } from "next/navigation";
 
 interface RegisterFormProps {
     onSuccess?: () => void;
@@ -24,42 +21,45 @@ export default function RegisterForm({ onSuccess, hideFooter = false }: Register
     const router = useRouter();
 
     const [form, setForm] = useState({
-        fullname: "",
-        username: "",
+        fullName: "",
         email: "",
-        phone: "",
         password: "",
-        confirm: "",
+        confirmPassword: "",
     });
 
     const [errors, setErrors] = useState({
-        fullname: "",
-        username: "",
+        fullName: "",
         email: "",
-        phone: "",
         password: "",
-        confirm: "",
+        confirmPassword: "",
     });
 
-    const [respErrors, setRespErrors] = useState<Record<string, string[]> | null>(null);
+    const [apiError, setApiError] = useState<string | null>(null);
 
     const handleChange = (field: string, value: string) => {
         setForm((prev) => ({ ...prev, [field]: value }));
+        // Clear error when user starts typing
+        if (errors[field as keyof typeof errors]) {
+            setErrors((prev) => ({ ...prev, [field]: "" }));
+        }
+        if (apiError) {
+            setApiError(null);
+        }
     };
 
     const handleBlur = (field: string) => {
         let msg = "";
 
-        if (field === "username") msg = validateUsername(form.username);
-        if (field === "email") msg = validateEmail(form.email);
-        if (field === "phone") msg = validatePhone(form.phone);
-        if (field === "password") msg = validatePassword(form.password);
-        if (field === "fullname") msg = validateFullname(form.fullname);
-
-        if (field === "confirm") {
-            msg = form.confirm !== form.password
-                ? "Mật khẩu xác nhận không khớp."
-                : "";
+        if (field === "fullName") {
+            msg = validateFullname(form.fullName);
+        } else if (field === "email") {
+            msg = validateEmail(form.email);
+        } else if (field === "password") {
+            msg = validatePassword(form.password);
+        } else if (field === "confirmPassword") {
+            if (form.confirmPassword !== form.password) {
+                msg = "Mật khẩu xác nhận không khớp.";
+            }
         }
 
         setErrors((prev) => ({ ...prev, [field]: msg }));
@@ -67,13 +67,11 @@ export default function RegisterForm({ onSuccess, hideFooter = false }: Register
 
     const validateAll = () => {
         const newErrors = {
-            fullname: validateFullname(form.fullname),
-            username: validateUsername(form.username),
+            fullName: validateFullname(form.fullName),
             email: validateEmail(form.email),
-            phone: validatePhone(form.phone),
             password: validatePassword(form.password),
-            confirm:
-                form.confirm !== form.password
+            confirmPassword:
+                form.confirmPassword !== form.password
                     ? "Mật khẩu xác nhận không khớp."
                     : "",
         };
@@ -84,168 +82,158 @@ export default function RegisterForm({ onSuccess, hideFooter = false }: Register
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        if (!validateAll()) return;
+        setApiError(null);
+
+        if (!validateAll()) {
+            return;
+        }
 
         setLoading(true);
 
         try {
-            await register(form.username, form.password, form.email, form.fullname);
-            alert("Đăng ký thành công");
+            await register(form.fullName, form.email, form.password, form.confirmPassword);
+            
+            // Registration successful - redirect to login
             if (onSuccess) {
                 onSuccess();
             } else {
                 router.push('/login');
             }
         } catch (err: any) {
-            const respErr = {
-                fullname: "",
-                username: err.username,
-                email: err.email,
-                phone: err.phone_number,
-                password: err.password,
-                confirm:
-                form.confirm !== form.password
-                    ? "Mật khẩu xác nhận không khớp."
-                    : "",
-            };
-            setErrors(respErr);
+            // Handle API errors
+            const errorMessage = err?.detail || err?.message || 'Đăng ký thất bại. Vui lòng thử lại.';
+            setApiError(errorMessage);
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
-    };
+    }
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="space-y-2">
+            <form onSubmit={handleSubmit} className="space-y-6" aria-describedby="register-error">
+                {apiError && (
+                    <div id="register-error" role="alert" className="text-sm text-red-700 bg-red-50 border border-red-200 p-4 rounded-xl">
+                        {apiError}
+                    </div>
+                )}
 
-                {/* Họ tên */}
+                {/* Full Name */}
                 <div>
-                    <label className="block font-medium text-gray-700 mb-1">Họ và tên</label>
-                    <input
-                        type="text"
-                        required
-                        value={form.fullname}
-                        onChange={(e) => handleChange("fullname", e.target.value)}
-                        onBlur={() => handleBlur("fullname")}
-                        className={`w-full px-4 py-2 rounded-xl border outline-none transition
-                                ${errors.fullname ? "border-red-500" : "border-gray-300"}`}
-                        placeholder="Họ và tên..."
-                    />
-                    {errors.fullname && (
-                        <p className="text-red-600 text-sm mt-1">{errors.fullname}</p>
-                    )}
-                </div>
-
-                {/* Username */}
-                <div>
-                    <label className="block font-medium text-gray-700 mb-1">
-                        Tên đăng nhập
+                    <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="fullName">
+                        Họ và tên
                     </label>
                     <input
+                        id="fullName"
+                        name="fullName"
                         type="text"
-                        value={form.username}
-                        onChange={(e) => handleChange("username", e.target.value)}
-                        onBlur={() => handleBlur("username")}
-                        className={`w-full px-4 py-2 rounded-xl border outline-none transition
-                                ${errors.username ? "border-red-500" : "border-gray-300"}`}
-                        placeholder="Tên đăng nhập..."
+                        required
+                        value={form.fullName}
+                        onChange={(e) => handleChange("fullName", e.target.value)}
+                        onBlur={() => handleBlur("fullName")}
+                        className={`w-full px-4 py-3.5 rounded-xl border outline-none transition-all bg-white shadow-sm hover:border-gray-400 focus:ring-2 focus:ring-orange-500/20 ${
+                            errors.fullName ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-orange-500"
+                        }`}
+                        placeholder="Nhập họ và tên của bạn..."
+                        disabled={loading}
+                        autoComplete="name"
                     />
-                    {errors.username && (
-                        <p className="text-red-600 text-sm mt-1">{errors.username}</p>
+                    {errors.fullName && (
+                        <p className="text-red-600 text-sm mt-1">{errors.fullName}</p>
                     )}
                 </div>
 
                 {/* Email */}
                 <div>
-                    <label className="block font-medium text-gray-700 mb-1">
+                    <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="email">
                         Email
                     </label>
                     <input
-                        type="text"
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
                         value={form.email}
                         onChange={(e) => handleChange("email", e.target.value)}
                         onBlur={() => handleBlur("email")}
-                        className={`w-full px-4 py-2 rounded-xl border outline-none transition
-                                ${errors.email ? "border-red-500" : "border-gray-300"}`}
+                        className={`w-full px-4 py-3.5 rounded-xl border outline-none transition-all bg-white shadow-sm hover:border-gray-400 focus:ring-2 focus:ring-orange-500/20 ${
+                            errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-orange-500"
+                        }`}
                         placeholder="you@example.com"
+                        disabled={loading}
+                        autoComplete="email"
                     />
                     {errors.email && (
                         <p className="text-red-600 text-sm mt-1">{errors.email}</p>
                     )}
                 </div>
 
-                {/* Phone */}
-                <div>
-                    <label className="block font-medium text-gray-700 mb-1">
-                        Số điện thoại
-                    </label>
-                    <input
-                        type="text"
-                        value={form.phone}
-                        onChange={(e) => handleChange("phone", e.target.value)}
-                        onBlur={() => handleBlur("phone")}
-                        className={`w-full px-4 py-2 rounded-xl border outline-none transition
-                                ${errors.phone ? "border-red-500" : "border-gray-300"}`}
-                        placeholder="0123456789"
-                    />
-                    {errors.phone && (
-                        <p className="text-red-600 text-sm mt-1">{errors.phone}</p>
-                    )}
-                </div>
-
                 {/* Password */}
                 <div>
-                    <label className="block font-medium text-gray-700 mb-1">
+                    <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="password">
                         Mật khẩu
                     </label>
                     <input
+                        id="password"
+                        name="password"
                         type="password"
+                        required
+                        minLength={6}
                         value={form.password}
                         onChange={(e) => handleChange("password", e.target.value)}
                         onBlur={() => handleBlur("password")}
-                        className={`w-full px-4 py-2 rounded-xl border outline-none transition
-                                ${errors.password ? "border-red-500" : "border-gray-300"}`}
+                        className={`w-full px-4 py-3.5 rounded-xl border outline-none transition-all bg-white shadow-sm hover:border-gray-400 focus:ring-2 focus:ring-orange-500/20 ${
+                            errors.password ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-orange-500"
+                        }`}
                         placeholder="••••••••"
+                        disabled={loading}
+                        autoComplete="new-password"
                     />
                     {errors.password && (
                         <p className="text-red-600 text-sm mt-1">{errors.password}</p>
                     )}
                 </div>
 
-                {/* Confirm password */}
+                {/* Confirm Password */}
                 <div>
-                    <label className="block font-medium text-gray-700 mb-1">
+                    <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="confirmPassword">
                         Xác nhận mật khẩu
                     </label>
                     <input
+                        id="confirmPassword"
+                        name="confirmPassword"
                         type="password"
-                        value={form.confirm}
-                        onChange={(e) => handleChange("confirm", e.target.value)}
-                        onBlur={() => handleBlur("confirm")}
-                        className={`w-full px-4 py-2 rounded-xl border outline-none transition
-                                ${errors.confirm ? "border-red-500" : "border-gray-300"}`}
+                        required
+                        minLength={6}
+                        value={form.confirmPassword}
+                        onChange={(e) => handleChange("confirmPassword", e.target.value)}
+                        onBlur={() => handleBlur("confirmPassword")}
+                        className={`w-full px-4 py-3.5 rounded-xl border outline-none transition-all bg-white shadow-sm hover:border-gray-400 focus:ring-2 focus:ring-orange-500/20 ${
+                            errors.confirmPassword ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-orange-500"
+                        }`}
                         placeholder="••••••••"
+                        disabled={loading}
+                        autoComplete="new-password"
                     />
-                    {errors.confirm && (
-                        <p className="text-red-600 text-sm mt-1">{errors.confirm}</p>
+                    {errors.confirmPassword && (
+                        <p className="text-red-600 text-sm mt-1">{errors.confirmPassword}</p>
                     )}
                 </div>
 
                 <button
                     type="submit"
-                    className="w-full mt-4 h-10 bg-gradient-to-r from-orange-500 to-orange-400 
-                                    text-white rounded-xl font-semibold shadow-lg 
-                                    hover:shadow-xl hover:-translate-y-0.5 transition"
+                    disabled={loading}
+                    className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-orange-700 transform hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+                    aria-busy={loading}
                 >
                     {loading ? "Đang xử lý..." : "Đăng ký"}
                 </button>
             </form>
 
             {!hideFooter && (
-                <div className="text-center mt-4 text-sm text-gray-500">
+                <div className="text-center mt-8 pt-6 border-t border-gray-200 text-sm text-gray-600">
                     Đã có tài khoản?{" "}
                     <Link href="/login" className="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition-colors">
-                        Đăng nhập
+                        Đăng nhập ngay
                     </Link>
                 </div>
             )}

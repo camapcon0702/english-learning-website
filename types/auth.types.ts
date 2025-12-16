@@ -1,11 +1,13 @@
 export interface LoginRequest {
-    usename: string;
+    email: string;
     password: string;
 }
 
 export interface User {
-    id: number;
-    name?: string;
+    id: string;
+    fullName: string;
+    email: string;
+    role: string;
+    createdAt?: string;
     avatarUrl?: string;
-    role?: string;
 }

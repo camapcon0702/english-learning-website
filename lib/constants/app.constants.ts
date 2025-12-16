@@ -1,12 +1,12 @@
 export const API_CONFIG = {
-    BASE_URL: process.env.BACKEND_URL,
+    BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080',
     TIMEOUT: 30000,
     ENDPOINTS: {
         AUTH: {
-            LOGIN: "/api/auth/login",
-            LOGOUT: "/api/auth/logout",
-            REFRESH: "/api/auth/token/refresh",
-            REGISTER: "/api/auth/register"
+            LOGIN: "/auth/login",
+            LOGOUT: "/auth/logout",
+            REFRESH: "/auth/token/refresh",
+            REGISTER: "/auth/register"
         },
     }
 } as const;

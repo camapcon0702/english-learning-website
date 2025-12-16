@@ -14,16 +14,15 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const { login } = useAuth();
     const [err, setErr] = useState<string | null>(null);
 
     useEffect(() => {
         const savedUser = localStorage.getItem("newUser");
         if (savedUser) {
-            setUsername(savedUser);
+            setEmail(savedUser);
         }
     }, []);
 
@@ -32,7 +31,7 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
         setErr(null);
         setLoading(true);
         try {
-            await login(username, password);
+            await login(email, password);
             localStorage.removeItem("newUser");
             if (onSuccess) {
                 onSuccess();
@@ -40,7 +39,7 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
                 router.push('/');
             }
         } catch (error: any) {
-            setErr(error?.detail || 'Login failed');
+            setErr(error?.detail || error?.message || 'Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.');
         } finally {
             setLoading(false);
         }
@@ -55,20 +54,20 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
             )}
 
             <div>
-                <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="username">
-                    Tên đăng nhập
+                <label className="block font-semibold text-gray-900 mb-2 text-sm" htmlFor="email">
+                    Email
                 </label>
                 <input
-                    id="username"
-                    name="username"
-                    type="text"
+                    id="email"
+                    name="email"
+                    type="email"
                     required
                     className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all bg-white shadow-sm hover:border-gray-400"
-                    placeholder="Nhập tên đăng nhập..."
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Nhập email của bạn..."
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
-                    autoComplete="username"
+                    autoComplete="email"
                 />
             </div>
 
