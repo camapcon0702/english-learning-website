@@ -11,6 +11,12 @@ export const API_CONFIG = {
         USER: {
             CURRENT_USER: "/api/user/current-user"
         },
+        FLASHCARD: {
+            TOPICS: "/api/vocabulary-topics",
+            TOPIC_BY_ID: "/api/vocabulary-topics",
+            ADMIN_TOPICS: "/api/admin/vocabulary-topics",
+            ADMIN_VOCABULARIES: "/api/admin/vocabulary-topics"
+        }
     }
 } as const;
 

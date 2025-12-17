@@ -1,5 +1,6 @@
 import { Header, SideNavigation } from "@/components";
 import { SidebarMenuItem } from "@/components/common/SideNavigation";
+import AdminGate from "@/components/auth/AdminGate";
 import { AuthProvider } from "@/hooks/auth/useAuth";
 import AddCardOutlined from "@mui/icons-material/AddCardOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -47,15 +48,17 @@ export default function AdminLayout({
 }) {
   return (
     <AuthProvider>
-      <div className="flex min-h-screen flex-col bg-gray-50">
-        <Header />
-        <div className="flex flex-1 pt-20">
-          <SideNavigation items={sidebarItems} />
-          <main className="flex-1 overflow-y-auto transition-all duration-300 ml-[260px]">
-            {children}
-          </main>
+      <AdminGate>
+        <div className="flex min-h-screen flex-col bg-gray-50">
+          <Header />
+          <div className="flex flex-1 pt-20">
+            <SideNavigation items={sidebarItems} />
+            <main className="flex-1 overflow-y-auto transition-all duration-300 ml-[260px]">
+              {children}
+            </main>
+          </div>
         </div>
-      </div>
+      </AdminGate>
     </AuthProvider>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import clsx from "clsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -12,15 +12,21 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ClearIcon from "@mui/icons-material/Clear";
 import FlashCard from "@/components/ui/flashcard/FlashCard";
-import { getTopicById } from "@/data/vocabularyTopics";
+import TopicIcon from "@/components/ui/vocabulary/TopicIcon";
+import type { Topic } from "@/components/ui/vocabulary/TopicCard";
+import type { VocabularyItem } from "@/components/ui/vocabulary/VocabularyCard";
 import { categories, levels } from "@/data/vocabularyData";
+import { toUiTopic, toUiVocabularyItem } from "@/lib/mappers/flashcard.mapper";
+import { getVocabularyTopicByIdApi } from "@/lib/services/flashcard.service";
 
 export default function TopicFlashCardPage() {
   const params = useParams();
   const router = useRouter();
   const topicId = params.topic as string;
 
-  const topic = getTopicById(topicId);
+  const [topic, setTopic] = useState<(Topic & { vocabularies: VocabularyItem[] }) | null>(null);
+  const [loadingTopic, setLoadingTopic] = useState(true);
+  const [topicError, setTopicError] = useState<string | null>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,6 +37,35 @@ export default function TopicFlashCardPage() {
   );
   const [showFilters, setShowFilters] = useState(false);
   const [isShuffled, setIsShuffled] = useState(false);
+
+  const loadTopic = React.useCallback(async () => {
+    try {
+      setLoadingTopic(true);
+      setTopicError(null);
+      const response = await getVocabularyTopicByIdApi(topicId);
+      const apiTopic = response?.data;
+      if (!apiTopic?.id) {
+        setTopic(null);
+        setTopicError("Không tìm thấy chủ đề");
+        return;
+      }
+
+      const uiTopic = toUiTopic(apiTopic);
+      const vocabularies = (apiTopic.vocabularies ?? []).map((v) =>
+        toUiVocabularyItem(v, { fallbackTopicId: apiTopic.id, fallbackLevel: apiTopic.level })
+      );
+      setTopic({ ...uiTopic, vocabularies });
+    } catch (err: any) {
+      setTopic(null);
+      setTopicError(err?.detail || err?.message || "Không thể tải thông tin chủ đề");
+    } finally {
+      setLoadingTopic(false);
+    }
+  }, [topicId]);
+
+  React.useEffect(() => {
+    loadTopic();
+  }, [loadTopic]);
 
   // Save bookmarks to localStorage
   React.useEffect(() => {
@@ -128,6 +163,19 @@ export default function TopicFlashCardPage() {
     selectedCategory !== "Tất cả" ||
     selectedLevel !== "all";
 
+  if (loadingTopic) {
+    return (
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
+          <div className="max-w-md mx-auto">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Đang tải chủ đề...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // If topic not found
   if (!topic) {
     return (
@@ -139,14 +187,22 @@ export default function TopicFlashCardPage() {
               Không tìm thấy chủ đề
             </h3>
             <p className="text-gray-600 mb-6">
-              Chủ đề bạn đang tìm không tồn tại.
+              {topicError || "Chủ đề bạn đang tìm không tồn tại."}
             </p>
-            <button
-              onClick={() => router.push("/flashcard")}
-              className="px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors"
-            >
-              Quay lại trang chủ đề
-            </button>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <button
+                onClick={() => router.push("/flashcard")}
+                className="px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors"
+              >
+                Quay lại trang chủ đề
+              </button>
+              <button
+                onClick={loadTopic}
+                className="px-6 py-3 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Thử lại
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -176,7 +232,9 @@ export default function TopicFlashCardPage() {
         >
           <div className="relative z-10">
             <div className="flex items-start gap-4 mb-4">
-              <div className="text-5xl lg:text-6xl">{topic.icon}</div>
+              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl overflow-hidden bg-white/15 backdrop-blur-sm flex items-center justify-center text-5xl lg:text-6xl">
+                <TopicIcon icon={topic.icon} alt={topic.name} className="w-full h-full" />
+              </div>
               <div className="flex-1">
                 <h1 className="text-3xl lg:text-4xl font-bold mb-2 text-white">
                   {topic.name}

@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import TopicIcon from "@/components/ui/vocabulary/TopicIcon";
 
 export interface Topic {
   id: string;
@@ -53,10 +54,14 @@ export default function TopicCard({ topic, className }: TopicCardProps) {
                 "bg-gradient-to-br shadow-lg",
                 topic.gradientFrom,
                 topic.gradientTo,
-                "group-hover:scale-110 transition-transform duration-300"
+                "group-hover:scale-110 transition-transform duration-300 overflow-hidden"
               )}
             >
-              {topic.icon}
+              <TopicIcon
+                icon={topic.icon}
+                alt={topic.name}
+                className="w-full h-full flex items-center justify-center"
+              />
             </div>
             <div className="text-right">
               <div className="text-2xl font-bold text-gray-900 group-hover:text-white transition-colors">

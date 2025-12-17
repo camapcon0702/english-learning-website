@@ -1,22 +1,49 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import SearchIcon from "@mui/icons-material/Search";
 import TopicCard from "@/components/ui/vocabulary/TopicCard";
-import { getAllTopics } from "@/data/vocabularyTopics";
+import type { Topic } from "@/components/ui/vocabulary/TopicCard";
+import { toUiTopic } from "@/lib/mappers/flashcard.mapper";
+import { getAllVocabularyTopicsApi } from "@/lib/services/flashcard.service";
 
 export default function FlashCardPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const topics = getAllTopics();
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadTopics = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await getAllVocabularyTopicsApi();
+      const data = Array.isArray(response?.data) ? response.data : [];
+      setTopics(data.map(toUiTopic));
+    } catch (err: any) {
+      setError(err?.detail || err?.message || "Không thể tải danh sách chủ đề");
+      setTopics([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadTopics();
+  }, []);
 
   // Filter topics by search query
-  const filteredTopics = topics.filter((topic) =>
-    searchQuery === "" ||
-    topic.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    topic.nameEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    topic.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredTopics = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (q === "") return topics;
+    return topics.filter((topic) => {
+      const name = (topic.name || "").toLowerCase();
+      const nameEn = (topic.nameEn || "").toLowerCase();
+      const description = (topic.description || "").toLowerCase();
+      return name.includes(q) || nameEn.includes(q) || description.includes(q);
+    });
+  }, [topics, searchQuery]);
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -52,10 +79,31 @@ export default function FlashCardPage() {
             />
           </div>
         </div>
+
+        {error && (
+          <div className="mt-4 bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 flex items-center justify-between gap-4">
+            <div className="text-sm">
+              <span className="font-semibold">Lỗi:</span> {error}
+            </div>
+            <button
+              onClick={loadTopics}
+              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-semibold"
+            >
+              Thử lại
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Topics Grid */}
-      {filteredTopics.length > 0 ? (
+      {loading ? (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
+          <div className="max-w-md mx-auto">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Đang tải danh sách chủ đề...</p>
+          </div>
+        </div>
+      ) : filteredTopics.length > 0 ? (
         <>
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900">
