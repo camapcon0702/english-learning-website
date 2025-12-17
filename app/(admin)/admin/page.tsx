@@ -4,13 +4,13 @@ import React from "react";
 import StatCard from "@/components/ui/admin/StatCard";
 import QuickActionCard from "@/components/ui/admin/QuickActionCard";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import AddCardOutlined from "@mui/icons-material/AddCardOutlined";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import PeopleIcon from "@mui/icons-material/People";
 import BookIcon from "@mui/icons-material/Book";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 
 export default function AdminPage() {
   return (
@@ -76,10 +76,10 @@ export default function AdminPage() {
               color="orange"
             />
             <QuickActionCard
-              title="Quản lý từ vựng"
-              description="Quản lý danh sách từ vựng và chủ đề"
-              icon={<TranslateOutlinedIcon className="w-6 h-6" />}
-              href="/admin/vocabulary-management"
+              title="Quản lý mini game"
+              description="Quản lý word & suggest cho mini game"
+              icon={<SportsEsportsOutlinedIcon className="w-6 h-6" />}
+              href="/admin/minigame-management"
               color="blue"
             />
             <QuickActionCard

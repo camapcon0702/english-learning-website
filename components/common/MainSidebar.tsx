@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
@@ -11,6 +11,24 @@ import AutoStoriesRoundedIcon from "@mui/icons-material/AutoStoriesRounded";
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import SportsEsportsRoundedIcon from "@mui/icons-material/SportsEsportsRounded";
 import StyleRoundedIcon from "@mui/icons-material/StyleRounded";
+
+// Context to share sidebar state
+interface SidebarContextType {
+  isMobileOpen: boolean;
+  setIsMobileOpen: (open: boolean) => void;
+  collapsed: boolean;
+  setCollapsed: (collapsed: boolean) => void;
+}
+
+const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
+
+export function useSidebar() {
+  const context = useContext(SidebarContext);
+  if (!context) {
+    throw new Error("useSidebar must be used within MainSidebarProvider");
+  }
+  return context;
+}
 
 const navigationItems = [
   { 
@@ -45,8 +63,7 @@ const navigationItems = [
   },
 ];
 
-export function MainSidebar() {
-  const pathname = usePathname();
+export function MainSidebarProvider({ children }: { children: React.ReactNode }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState<boolean>(() =>
     typeof window !== "undefined"
@@ -57,6 +74,17 @@ export function MainSidebar() {
   useEffect(() => {
     localStorage.setItem("main-sidebar-collapsed", String(collapsed));
   }, [collapsed]);
+
+  return (
+    <SidebarContext.Provider value={{ isMobileOpen, setIsMobileOpen, collapsed, setCollapsed }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+}
+
+export function MainSidebar() {
+  const pathname = usePathname();
+  const { isMobileOpen, setIsMobileOpen, collapsed, setCollapsed } = useSidebar();
 
   return (
     <>
@@ -71,23 +99,20 @@ export function MainSidebar() {
         </svg>
       </button>
 
-      {/* Mobile overlay */}
-      {isMobileOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[997] transition-opacity"
-          onClick={() => setIsMobileOpen(false)}
-        />
-      )}
+      {/* Mobile overlay removed - using push content instead */}
 
       {/* Sidebar */}
       <aside 
         data-sidebar="main"
         data-collapsed={collapsed}
+        data-mobile-open={isMobileOpen}
         className={clsx(
           "fixed left-0 top-20 bottom-0 bg-white/95 backdrop-blur-md border-r border-gray-200/80 overflow-y-auto z-[998] transition-all duration-300 ease-out shadow-lg lg:shadow-none",
           "lg:translate-x-0",
           isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
-          collapsed ? "lg:w-[70px] lg:px-2" : "lg:w-72 lg:px-6"
+          collapsed ? "lg:w-[70px] lg:px-2" : "lg:w-72 lg:px-6",
+          // Mobile width when open
+          isMobileOpen && "w-72"
         )}
       >
         <div className={clsx("p-4 lg:p-0", collapsed && "lg:px-0")}>

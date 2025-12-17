@@ -16,6 +16,11 @@ export const API_CONFIG = {
             TOPIC_BY_ID: "/api/vocabulary-topics",
             ADMIN_TOPICS: "/api/admin/vocabulary-topics",
             ADMIN_VOCABULARIES: "/api/admin/vocabulary-topics"
+        },
+        MINIGAME: {
+            ADMIN_MINI_GAMES: "/api/admin/mini-games",
+            START: "/api/mini-games/start",
+            SUBMIT: "/api/mini-games"
         }
     }
 } as const;

@@ -4,9 +4,9 @@ import AdminGate from "@/components/auth/AdminGate";
 import { AuthProvider } from "@/hooks/auth/useAuth";
 import AddCardOutlined from "@mui/icons-material/AddCardOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 
 const sidebarItems: SidebarMenuItem[] = [
   {
@@ -22,10 +22,10 @@ const sidebarItems: SidebarMenuItem[] = [
     to: "/admin/grammar-management",
   },
   {
-    id: "vocabulary-management",
-    label: "Quản lý từ vựng",
-    icon: <TranslateOutlinedIcon />,
-    to: "/admin/vocabulary-management",
+    id: "minigame-management",
+    label: "Quản lý mini game",
+    icon: <SportsEsportsOutlinedIcon />,
+    to: "/admin/minigame-management",
   },
   {
     id: "exercise-management",
