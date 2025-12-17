@@ -22,7 +22,7 @@ const navigationItems = [
   { 
     label: "Ngữ pháp", 
     Icon: AutoStoriesRoundedIcon,
-    path: "/grammar",
+    path: "/grammar/library",
     description: "Học ngữ pháp"
   },
   { 

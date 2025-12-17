@@ -7,7 +7,7 @@ type AuthContextType = {
     user: User | null;
     token: string | null;
     setToken: (t: string | null) => void;
-    login: (email: string, password: string) => Promise<void>;
+    login: (email: string, password: string) => Promise<User>;
     logout: () => Promise<void>;
     register: (fullName: string, email: string, password: string, confirmPassword: string) => Promise<void>;
     loading: boolean;
@@ -48,7 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         initializeAuth();
     }, []);
 
-    async function login(email: string, password: string) {
+    async function login(email: string, password: string): Promise<User> {
         setLoading(true);
         try {
             const response = await loginApi(email, password);
@@ -63,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 // Update state
                 setToken(authToken);
                 setUser(userData);
+                return userData;
             } else {
                 throw new Error(response.message || 'Login failed');
             }

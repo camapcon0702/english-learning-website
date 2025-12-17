@@ -18,6 +18,14 @@ function authHeadersOrThrow() {
   };
 }
 
+function authHeadersOptional() {
+  const token = localStorage.getItem("auth_token");
+  return {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+}
+
 async function safeJson(res: Response) {
   try {
     return await res.json();
@@ -56,14 +64,14 @@ async function request<T>(url: string, init: RequestInit): Promise<ApiResponse<T
 export async function getAllGrammarsApi(): Promise<ApiResponse<Grammar[]>> {
   return request(`${API_BASE_URL}/api/grammars`, {
     method: "GET",
-    headers: authHeadersOrThrow(),
+    headers: authHeadersOptional(),
   });
 }
 
 export async function getGrammarByIdApi(id: string): Promise<ApiResponse<Grammar>> {
   return request(`${API_BASE_URL}/api/grammars/${encodeURIComponent(id)}`, {
     method: "GET",
-    headers: authHeadersOrThrow(),
+    headers: authHeadersOptional(),
   });
 }
 

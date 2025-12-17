@@ -50,7 +50,7 @@ export function Header({ className }: HeaderProps) {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 right-0 z-[999] bg-white/95 backdrop-blur-md",
+        "fixed top-0 left-0 right-0 z-999 bg-white/95 backdrop-blur-md",
         "border-b border-gray-200/80",
         "shadow-sm",
         className
@@ -59,8 +59,12 @@ export function Header({ className }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo Section */}
-          <div className="flex items-center gap-4 min-w-0">
-            <div className="w-10 h-10 flex-shrink-0" aria-hidden>
+          <Link
+            href="/"
+            className="flex items-center gap-4 min-w-0 hover:opacity-90 transition-opacity"
+            aria-label="Về trang chủ"
+          >
+            <div className="w-10 h-10 shrink-0" aria-hidden>
               <svg
                 width="40"
                 height="40"
@@ -91,7 +95,7 @@ export function Header({ className }: HeaderProps) {
                 Học tiếng Anh hiệu quả
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
@@ -105,7 +109,7 @@ export function Header({ className }: HeaderProps) {
                 </button>
                 <button
                   onClick={() => setIsRegisterModalOpen(true)}
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl px-6 py-2.5 text-sm transition-all hover:from-orange-600 hover:to-orange-700 active:scale-95 shadow-md hover:shadow-lg"
+                  className="bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl px-6 py-2.5 text-sm transition-all hover:from-orange-600 hover:to-orange-700 active:scale-95 shadow-md hover:shadow-lg"
                 >
                   Đăng ký
                 </button>
@@ -118,7 +122,7 @@ export function Header({ className }: HeaderProps) {
               >
                 <div className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 rounded-xl px-3 py-2 transition-all duration-200 border border-transparent hover:border-gray-200">
                   <div
-                    className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-full font-semibold text-sm flex items-center justify-center flex-shrink-0 shadow-sm ring-2 ring-orange-100"
+                    className="w-10 h-10 bg-linear-to-br from-orange-500 to-orange-600 text-white rounded-full font-semibold text-sm flex items-center justify-center shrink-0 shadow-sm ring-2 ring-orange-100"
                     aria-hidden
                   >
                     {user.avatarUrl ? (

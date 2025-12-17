@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const navigationItems = [
   { label: "Trang chủ", icon: "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f3e0.png", path: "/" },
-  { label: "Ngữ pháp", icon: "./images/icon_grammar.png", path: "/grammar" },
+  { label: "Ngữ pháp", icon: "./images/icon_grammar.png", path: "/grammar/library" },
   { label: "Bài tập", icon: "./images/icon_exercise.png", path: "/exercise" },
   { label: "Mini Game", icon: "./images/icon_minigame.png", path: "/minigame" },
   { label: "Flash Card", icon: "./images/icon_flashcard.png", path: "/flashcard" },

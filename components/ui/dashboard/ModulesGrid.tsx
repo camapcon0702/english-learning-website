@@ -17,7 +17,7 @@ const defaultModules: ModuleCardProps[] = [
         moduleName: "Ngữ pháp",
         moduleDescription: "Ngữ pháp cơ bản.",
         moduleIcon: "./images/icon_grammar.png",
-        navigateTo: "/grammar"
+        navigateTo: "/grammar/library"
     },
     {
         moduleName: "Bài tập",

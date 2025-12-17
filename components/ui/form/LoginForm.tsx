@@ -19,6 +19,11 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
     const { login } = useAuth();
     const [err, setErr] = useState<string | null>(null);
 
+    const isAdminRole = (role?: string) => {
+        const r = (role || "").toUpperCase();
+        return r === "ROLE_ADMIN" || r === "ADMIN";
+    };
+
     useEffect(() => {
         const savedUser = localStorage.getItem("newUser");
         if (savedUser) {
@@ -31,13 +36,15 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
         setErr(null);
         setLoading(true);
         try {
-            await login(email, password);
+            const userData = await login(email, password);
             localStorage.removeItem("newUser");
-            if (onSuccess) {
-                onSuccess();
-            } else {
-                router.push('/');
+            if (isAdminRole(userData?.role)) {
+                onSuccess?.();
+                router.push("/admin");
+                return;
             }
+            if (onSuccess) onSuccess();
+            else router.push("/");
         } catch (error: any) {
             setErr(error?.detail || error?.message || 'Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.');
         } finally {
@@ -103,7 +110,7 @@ export default function LoginForm({ onSuccess, hideFooter = false }: LoginFormPr
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-orange-700 transform hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full h-12 bg-linear-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-orange-700 transform hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
                 aria-busy={loading}
             >
                 {loading ? "Đang xử lý..." : "Đăng nhập"}

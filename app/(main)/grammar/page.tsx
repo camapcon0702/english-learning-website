@@ -1,5 +1,6 @@
 import { ModuleCardProps } from "@/components/ui/dashboard/ModuleCard";
 import ModulesGrid from "@/components/ui/dashboard/ModulesGrid";
+import Link from "next/link";
 
 const grammarSubModule: ModuleCardProps[] = [
     {
@@ -40,6 +41,25 @@ export default function GrammarPage() {
                     Chủ đề ngữ pháp
                 </h2>
                 <ModulesGrid modules={grammarSubModule} gridColumns="grid-cols-3" />
+            </div>
+
+            <div className="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                <div className="flex items-start justify-between gap-4 flex-wrap">
+                    <div>
+                        <h2 className="text-2xl font-semibold text-gray-900">
+                            Thư viện công thức ngữ pháp
+                        </h2>
+                        <p className="text-gray-600 mt-2 max-w-3xl">
+                            Xem danh sách các công thức/ngữ pháp được biên soạn trong hệ thống (nội dung WYSIWYG).
+                        </p>
+                    </div>
+                    <Link
+                        href="/grammar/library"
+                        className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+                    >
+                        Mở thư viện
+                    </Link>
+                </div>
             </div>
         </div>
     );

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
+import DOMPurify from "dompurify";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,12 +13,21 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import SearchIcon from "@mui/icons-material/Search";
 import type { Grammar, GrammarDTO } from "@/types/grammar.types";
+import RichTextEditor from "@/components/ui/editor/RichTextEditor";
 import {
   createGrammarApi,
   deleteGrammarApi,
   getAllGrammarsApi,
   updateGrammarApi,
 } from "@/lib/services/grammar.service";
+
+function isEmptyHtml(html: string) {
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim().length === 0;
+}
 
 export default function GrammarManagementPage() {
   const [grammars, setGrammars] = useState<Grammar[]>([]);
@@ -282,9 +292,12 @@ export default function GrammarManagementPage() {
                       <div className="text-sm font-semibold text-gray-700 mb-2">
                         Nội dung
                       </div>
-                      <div className="bg-white border border-gray-200 rounded-xl p-4 whitespace-pre-wrap text-gray-800 leading-relaxed">
-                        {g.content}
-                      </div>
+                      <div
+                        className="bg-white border border-gray-200 rounded-xl p-4 text-gray-800 wysiwyg-content"
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(g.content || ""),
+                        }}
+                      />
                     </div>
                   )}
                 </div>
@@ -338,16 +351,10 @@ export default function GrammarManagementPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Nội dung *
                   </label>
-                  <textarea
+                  <RichTextEditor
                     value={form.content}
-                    onChange={(e) => setForm({ ...form, content: e.target.value })}
-                    rows={10}
-                    className={clsx(
-                      "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm",
-                      "border-gray-300"
-                    )}
+                    onChange={(html) => setForm({ ...form, content: html })}
                     placeholder="Nhập nội dung công thức ngữ pháp..."
-                    required
                   />
                   <p className="text-xs text-gray-500 mt-2">
                     Gợi ý: bạn có thể xuống dòng, dùng bullet, ví dụ… nội dung sẽ hiển thị dạng text (whitespace preserved).
@@ -364,7 +371,7 @@ export default function GrammarManagementPage() {
                 </button>
                 <button
                   onClick={save}
-                  disabled={!form.name.trim() || !form.content.trim()}
+                  disabled={!form.name.trim() || isEmptyHtml(form.content)}
                   className="flex items-center gap-2 px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <SaveIcon className="w-5 h-5" />

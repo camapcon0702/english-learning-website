@@ -91,3 +91,66 @@ aside:not([data-sidebar="main"]):not([data-collapsed]) ~ main {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+/* Basic WYSIWYG styles (TipTap output + preview) */
+.tiptap-editor,
+.wysiwyg-content {
+  line-height: 1.7;
+}
+
+.tiptap-editor h1,
+.wysiwyg-content h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0.75rem 0 0.5rem;
+}
+.tiptap-editor h2,
+.wysiwyg-content h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0.75rem 0 0.5rem;
+}
+.tiptap-editor h3,
+.wysiwyg-content h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.tiptap-editor p,
+.wysiwyg-content p {
+  margin: 0.5rem 0;
+}
+
+.tiptap-editor ul,
+.wysiwyg-content ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+.tiptap-editor ol,
+.wysiwyg-content ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+.tiptap-editor li,
+.wysiwyg-content li {
+  margin: 0.25rem 0;
+}
+
+.tiptap-editor a,
+.wysiwyg-content a {
+  color: #ea580c;
+  text-decoration: underline;
+}
+
+.tiptap-editor blockquote,
+.wysiwyg-content blockquote {
+  border-left: 4px solid #fed7aa;
+  padding-left: 0.75rem;
+  margin: 0.75rem 0;
+  color: #374151;
+  background: rgba(255, 237, 213, 0.35);
+  border-radius: 0.5rem;
+}
