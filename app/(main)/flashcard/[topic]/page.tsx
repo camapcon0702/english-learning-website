@@ -32,9 +32,6 @@ export default function TopicFlashCardPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tất cả");
   const [selectedLevel, setSelectedLevel] = useState("all");
-  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(
-    () => new Set(JSON.parse(localStorage.getItem("vocabulary-bookmarks") || "[]"))
-  );
   const [showFilters, setShowFilters] = useState(false);
   const [isShuffled, setIsShuffled] = useState(false);
 
@@ -66,23 +63,6 @@ export default function TopicFlashCardPage() {
   React.useEffect(() => {
     loadTopic();
   }, [loadTopic]);
-
-  // Save bookmarks to localStorage
-  React.useEffect(() => {
-    localStorage.setItem("vocabulary-bookmarks", JSON.stringify(Array.from(bookmarkedIds)));
-  }, [bookmarkedIds]);
-
-  const handleBookmark = (id: string) => {
-    setBookmarkedIds((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
 
   // Filter vocabulary
   const filteredVocabulary = useMemo(() => {
@@ -398,8 +378,6 @@ export default function TopicFlashCardPage() {
         <div className="mb-6">
           <FlashCard
             vocabulary={currentCard}
-            onBookmark={handleBookmark}
-            isBookmarked={bookmarkedIds.has(currentCard.id)}
             cardNumber={currentIndex + 1}
             totalCards={filteredVocabulary.length}
           />

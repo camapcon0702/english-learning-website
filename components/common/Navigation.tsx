@@ -10,7 +10,6 @@ const navigationItems = [
   { label: "Bài tập", icon: "./images/icon_exercise.png", path: "/exercise" },
   { label: "Mini Game", icon: "./images/icon_minigame.png", path: "/minigame" },
   { label: "Flash Card", icon: "./images/icon_flashcard.png", path: "/flashcard" },
-  { label: "Lịch Học", icon: "./images/icon_calendar.png", path: "/schedule" },
 ];
 
 export function Navigation() {

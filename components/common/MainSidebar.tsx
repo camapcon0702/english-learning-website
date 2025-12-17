@@ -6,43 +6,42 @@ import Link from "next/link";
 import clsx from "clsx";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import AutoStoriesRoundedIcon from "@mui/icons-material/AutoStoriesRounded";
+import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import SportsEsportsRoundedIcon from "@mui/icons-material/SportsEsportsRounded";
+import StyleRoundedIcon from "@mui/icons-material/StyleRounded";
 
 const navigationItems = [
   { 
     label: "Trang chủ", 
-    icon: "🏠", 
+    Icon: HomeRoundedIcon,
     path: "/",
     description: "Dashboard chính"
   },
   { 
     label: "Ngữ pháp", 
-    icon: "📚", 
+    Icon: AutoStoriesRoundedIcon,
     path: "/grammar",
     description: "Học ngữ pháp"
   },
   { 
     label: "Bài tập", 
-    icon: "✍️", 
+    Icon: AssignmentRoundedIcon,
     path: "/exercise",
     description: "Luyện tập"
   },
   { 
     label: "Mini Game", 
-    icon: "🎮", 
+    Icon: SportsEsportsRoundedIcon,
     path: "/minigame",
     description: "Trò chơi"
   },
   { 
     label: "Flash Card", 
-    icon: "🃏", 
+    Icon: StyleRoundedIcon,
     path: "/flashcard",
     description: "Học từ vựng"
-  },
-  { 
-    label: "Lịch Học", 
-    icon: "📅", 
-    path: "/schedule",
-    description: "Lịch học tập"
   },
 ];
 
@@ -120,6 +119,7 @@ export function MainSidebar() {
           <nav className={clsx("space-y-2", collapsed && "lg:space-y-3")}>
             {navigationItems.map((item) => {
               const isActive = pathname === item.path || pathname.startsWith(item.path + "/");
+              const Icon = item.Icon;
 
               return (
                 <Link
@@ -138,11 +138,18 @@ export function MainSidebar() {
                   )}
                   title={collapsed ? item.label : undefined}
                 >
-                  <span className={clsx(
-                    "text-2xl flex-shrink-0 transition-transform duration-200",
-                    isActive ? "scale-110" : "group-hover:scale-110"
-                  )}>
-                    {item.icon}
+                  <span
+                    className={clsx(
+                      "flex-shrink-0 transition-all duration-200 rounded-xl flex items-center justify-center",
+                      "w-10 h-10",
+                      isActive
+                        ? "bg-orange-100 text-orange-700"
+                        : "bg-gray-100 text-gray-700 group-hover:bg-orange-50 group-hover:text-orange-700",
+                      isActive ? "scale-110" : "group-hover:scale-110"
+                    )}
+                    aria-hidden
+                  >
+                    <Icon className="text-[22px]" />
                   </span>
                   {!collapsed && (
                     <>

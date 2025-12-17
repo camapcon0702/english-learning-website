@@ -3,23 +3,17 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FlipIcon from "@mui/icons-material/Flip";
 import { VocabularyItem } from "@/components/ui/vocabulary/VocabularyCard";
 
 export interface FlashCardProps {
   vocabulary: VocabularyItem;
-  onBookmark?: (id: string) => void;
-  isBookmarked?: boolean;
   cardNumber?: number;
   totalCards?: number;
 }
 
 export default function FlashCard({
   vocabulary,
-  onBookmark,
-  isBookmarked = false,
   cardNumber,
   totalCards,
 }: FlashCardProps) {
@@ -39,11 +33,6 @@ export default function FlashCard({
     } else {
       setIsPlaying(false);
     }
-  };
-
-  const handleBookmark = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onBookmark?.(vocabulary.id);
   };
 
   const handleFlip = () => {
@@ -109,17 +98,6 @@ export default function FlashCard({
               >
                 <VolumeUpIcon className="w-5 h-5" />
               </button>
-              <button
-                onClick={handleBookmark}
-                className="p-2 rounded-lg bg-white/80 text-gray-600 hover:bg-orange-100 hover:text-orange-600 transition-all"
-                aria-label={isBookmarked ? "Bỏ đánh dấu" : "Đánh dấu"}
-              >
-                {isBookmarked ? (
-                  <BookmarkIcon className="w-5 h-5 text-orange-500" />
-                ) : (
-                  <BookmarkBorderIcon className="w-5 h-5" />
-                )}
-              </button>
             </div>
 
             {/* Main Content */}
@@ -159,21 +137,6 @@ export default function FlashCard({
             )}
             style={{ backfaceVisibility: "hidden" }}
           >
-            {/* Header Actions */}
-            <div className="absolute top-4 right-4">
-              <button
-                onClick={handleBookmark}
-                className="p-2 rounded-lg bg-white/80 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-all"
-                aria-label={isBookmarked ? "Bỏ đánh dấu" : "Đánh dấu"}
-              >
-                {isBookmarked ? (
-                  <BookmarkIcon className="w-5 h-5 text-orange-500" />
-                ) : (
-                  <BookmarkBorderIcon className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-
             {/* Main Content */}
             <div className="text-center flex-1 flex flex-col items-center justify-center w-full">
               <div className="mb-6">

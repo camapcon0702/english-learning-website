@@ -37,12 +37,6 @@ const defaultModules: ModuleCardProps[] = [
         moduleIcon: "./images/icon_flashcard.png",
         navigateTo: "/flashcard"
     },
-    {
-        moduleName: "Lịch học",
-        moduleDescription: "Theo dõi lịch học của bạn.",
-        moduleIcon: "./images/icon_calendar.png",
-        navigateTo: "/schedule"
-    },
 ];
 
 export default function ModulesGrid({
