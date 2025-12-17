@@ -8,6 +8,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Link from "next/link";
 import ExamQuestionCard from "@/components/ui/exercise/ExamQuestionCard";
+import ExamQuestionReviewCard from "@/components/ui/exercise/ExamQuestionReviewCard";
 import LoginModal from "@/components/ui/modal/LoginModal";
 import RegisterModal from "@/components/ui/modal/RegisterModal";
 import {
@@ -357,19 +358,27 @@ export default function ExerciseDetailPage() {
 
       {/* Questions */}
       <div className="space-y-4 mb-6">
-        {examSession.questions.map((question, index) => {
-          const userAnswer = answers[question.id];
-          return (
-            <ExamQuestionCard
-              key={question.id}
-              question={question}
-              questionNumber={index + 1}
-              selectedLabel={userAnswer}
-              onSelect={(label) => handleAnswerChange(question.id, label)}
-              disabled={showResults}
-            />
-          );
-        })}
+        {showResults && result?.review && result.review.length > 0
+          ? result.review.map((r, index) => (
+              <ExamQuestionReviewCard
+                key={`${r.questionId}-${index}`}
+                review={r as any}
+                questionNumber={index + 1}
+              />
+            ))
+          : examSession.questions.map((question, index) => {
+              const userAnswer = answers[question.id];
+              return (
+                <ExamQuestionCard
+                  key={question.id}
+                  question={question}
+                  questionNumber={index + 1}
+                  selectedLabel={userAnswer}
+                  onSelect={(label) => handleAnswerChange(question.id, label)}
+                  disabled={showResults}
+                />
+              );
+            })}
       </div>
 
       {/* Submit Button */}
@@ -403,8 +412,9 @@ export default function ExerciseDetailPage() {
 
       {/* Results */}
       {showResults && (
-        <div className="bg-white rounded-xl shadow-lg border-2 border-orange-200 p-8 mb-6">
-          <div className="text-center mb-6">
+        <div className="space-y-6 mb-6">
+          <div className="bg-white rounded-xl shadow-lg border-2 border-orange-200 p-8">
+            <div className="text-center mb-6">
             <div
               className={clsx(
                 "w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center",
@@ -434,9 +444,9 @@ export default function ExerciseDetailPage() {
                 ? "👍 Tốt! Hãy tiếp tục cố gắng!"
                 : "💪 Cần cố gắng thêm! Hãy xem lại các câu sai."}
             </p>
-          </div>
+            </div>
 
-          <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-4 text-center">
             <div className="p-4 bg-gray-50 rounded-lg">
               <div className="text-2xl font-bold text-gray-900">
                 {result?.correctAnswers ?? 0}
@@ -457,13 +467,14 @@ export default function ExerciseDetailPage() {
             </div>
           </div>
 
-          <div className="mt-6 text-center">
+            <div className="mt-6 text-center">
             <button
               onClick={() => router.push("/exercise")}
               className="px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors"
             >
               Làm bài tập khác
             </button>
+          </div>
           </div>
         </div>
       )}

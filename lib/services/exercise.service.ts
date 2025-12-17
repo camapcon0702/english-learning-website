@@ -103,6 +103,16 @@ export interface ExamResultResponse {
   totalQuestions: number;
   correctAnswers: number;
   score: number;
+  review?: Array<{
+    questionId: string;
+    title?: string;
+    content?: string;
+    audioUrl?: string;
+    selectedLabel?: AnswerLabel;
+    correctLabel?: AnswerLabel;
+    correct: boolean;
+    answers?: Array<{ label: AnswerLabel; content: string }>;
+  }>;
 }
 
 function authHeadersOrThrow() {
