@@ -1,0 +1,506 @@
+[
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'She is reading a book in the library.' What is she doing?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Writing a letter",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Reading a book",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "Watching TV",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Sleeping",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Tom works as a teacher in a high school.' What is Tom's job?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Doctor",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Engineer",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "Teacher",
+                "correct": true
+            },
+            {
+                "label": "D",
+                "content": "Farmer",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'They go to school by bus every day.' How do they go to school?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "By bike",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "By bus",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "On foot",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "By car",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Anna likes cooking and often makes dinner for her family.' What does Anna like?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Cleaning",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Cooking",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "Shopping",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Sleeping",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'The weather is cold and snowy today.' How is the weather?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Hot and sunny",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Cold and snowy",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "Warm and windy",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Dry and cloudy",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'John wakes up at 6 a.m. and goes to work at 7 a.m.' When does John wake up?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "At 5 a.m.",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "At 6 a.m.",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "At 7 a.m.",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "At 8 a.m.",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Lucy bought some apples and oranges at the market.' Where did Lucy go?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "To the school",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "To the hospital",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "To the market",
+                "correct": true
+            },
+            {
+                "label": "D",
+                "content": "To the office",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'The cat is sleeping under the table.' Where is the cat?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "On the chair",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Under the table",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "On the table",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Outside",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'The cat is sleeping under the table.' Where is the cat?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "On the chair",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Under the table",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "On the table",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Outside",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Peter is watching a movie with his friends.' What is Peter doing?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Watching a movie",
+                "correct": true
+            },
+            {
+                "label": "B",
+                "content": "Reading a book",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "Playing football",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Cooking dinner",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'The children are playing in the park after school.' Where are the children?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "At home",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "At school",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "In the park",
+                "correct": true
+            },
+            {
+                "label": "D",
+                "content": "In the library",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'My father drives to work every morning.' How does his father go to work?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "By bus",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "By bike",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "By car",
+                "correct": true
+            },
+            {
+                "label": "D",
+                "content": "On foot",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Lisa drinks a glass of milk before going to bed.' What does Lisa drink?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Water",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Milk",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "Juice",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Coffee",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'The library opens at 8 a.m. and closes at 5 p.m.' When does the library open?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "At 7 a.m.",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "At 8 a.m.",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "At 9 a.m.",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "At 5 p.m.",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Emma has two brothers and one sister.' How many siblings does Emma have?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "One",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "Two",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "Three",
+                "correct": true
+            },
+            {
+                "label": "D",
+                "content": "Four",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'It is raining, so they stay at home.' Why do they stay at home?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "Because it is raining",
+                "correct": true
+            },
+            {
+                "label": "B",
+                "content": "Because it is sunny",
+                "correct": false
+            },
+            {
+                "label": "C",
+                "content": "Because it is cold",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "Because it is windy",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'The train arrives at the station at 6:30 p.m.' When does the train arrive?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "At 6:00 p.m.",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "At 6:30 p.m.",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "At 7:00 p.m.",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "At 5:30 p.m.",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    },
+    {
+        "title": "Reading Question",
+        "type": "READING",
+        "content": "Read the passage: 'Sarah studies English because she wants to travel abroad.' Why does Sarah study English?",
+        "answers": [
+            {
+                "label": "A",
+                "content": "To become a teacher",
+                "correct": false
+            },
+            {
+                "label": "B",
+                "content": "To travel abroad",
+                "correct": true
+            },
+            {
+                "label": "C",
+                "content": "To read novels",
+                "correct": false
+            },
+            {
+                "label": "D",
+                "content": "To watch movies",
+                "correct": false
+            }
+        ],
+        "_class": "com.nttmk.englishlearningserver.models.Question"
+    }
+]

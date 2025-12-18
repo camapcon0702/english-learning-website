@@ -1,0 +1,207 @@
+[
+    {
+        "_id": "topic_agriculture",
+        "name": "Nông nghiệp",
+        "nameEn": "Agriculture",
+        "description": "Học từ vựng về nông nghiệp, trồng trọt, chăn nuôi và các hoạt động liên quan đến nông thôn.",
+        "icon": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/nong_nghiep_xanh_130de38c92.png",
+        "color": "green",
+        "gradientFrom": "from-green-400",
+        "gradientTo": "to-emerald-600",
+        "vocabularyCount": 5,
+        "level": "INTERMEDIATE",
+        "vocabularies": [
+            {
+                "_id": "ag-1",
+                "word": "Crop",
+                "pronunciation": "krɒp",
+                "meaning": "Vụ mùa, cây trồng",
+                "example": "Farmers harvest their crops in autumn.",
+                "exampleTranslation": "Nông dân thu hoạch vụ mùa vào mùa thu.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_agriculture"
+            },
+            {
+                "_id": "ag-2",
+                "word": "Harvest",
+                "pronunciation": "ˈhɑːvɪst",
+                "meaning": "Thu hoạch",
+                "example": "The harvest season is very busy for farmers.",
+                "exampleTranslation": "Mùa thu hoạch rất bận rộn đối với nông dân.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_agriculture"
+            },
+            {
+                "_id": "ag-3",
+                "word": "Fertilizer",
+                "pronunciation": "ˈfɜːtɪlaɪzə",
+                "meaning": "Phân bón",
+                "example": "Organic fertilizer is better for the environment.",
+                "exampleTranslation": "Phân bón hữu cơ tốt hơn cho môi trường.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_agriculture"
+            },
+            {
+                "_id": "ag-4",
+                "word": "Irrigation",
+                "pronunciation": "ˌɪrɪˈɡeɪʃən",
+                "meaning": "Tưới tiêu",
+                "example": "Modern irrigation systems help save water.",
+                "exampleTranslation": "Hệ thống tưới tiêu hiện đại giúp tiết kiệm nước.",
+                "category": "NOUN",
+                "level": "ADVANCED",
+                "topic": "topic_agriculture"
+            },
+            {
+                "_id": "ag-5",
+                "word": "Livestock",
+                "pronunciation": "ˈlaɪvstɒk",
+                "meaning": "Gia súc",
+                "example": "The farmer takes care of his livestock every day.",
+                "exampleTranslation": "Nông dân chăm sóc gia súc của mình mỗi ngày.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_agriculture"
+            }
+        ]
+    },
+    {
+        "_id": "topic_work",
+        "name": "Công việc",
+        "nameEn": "Work & Career",
+        "description": "Từ vựng về công việc, nghề nghiệp, môi trường làm việc và các kỹ năng chuyên nghiệp.",
+        "icon": "https://s7ap1.scene7.com/is/image/aia/cach-lam-viec-hieu-qua?qlt=85&wid=1024&ts=1692593406259&dpr=off",
+        "color": "blue",
+        "gradientFrom": "from-blue-400",
+        "gradientTo": "to-indigo-600",
+        "vocabularyCount": 2,
+        "level": "INTERMEDIATE",
+        "vocabularies": [
+            {
+                "_id": "work-1",
+                "word": "Resume",
+                "pronunciation": "ˈrezjumeɪ",
+                "meaning": "Sơ yếu lý lịch, CV",
+                "example": "Please send your resume to our HR department.",
+                "exampleTranslation": "Vui lòng gửi sơ yếu lý lịch của bạn đến phòng nhân sự.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_work"
+            },
+            {
+                "_id": "work-2",
+                "word": "Deadline",
+                "pronunciation": "ˈdedlaɪn",
+                "meaning": "Hạn chót, thời hạn",
+                "example": "We need to finish this project before the deadline.",
+                "exampleTranslation": "Chúng ta cần hoàn thành dự án này trước hạn chót.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_work"
+            }
+        ]
+    },
+    {
+        "_id": "topic_food",
+        "name": "Ẩm thực",
+        "nameEn": "Food & Cooking",
+        "description": "Từ vựng về món ăn, nguyên liệu, cách nấu ăn và các món ăn đặc trưng của các nền văn hóa.",
+        "icon": "https://nads.1cdn.vn/2024/06/04/screenshot-2024-06-04-at-12.59.48.png",
+        "color": "orange",
+        "gradientFrom": "from-orange-400",
+        "gradientTo": "to-red-600",
+        "vocabularyCount": 1,
+        "level": "BEGINNER",
+        "vocabularies": [
+            {
+                "_id": "food-1",
+                "word": "Delicious",
+                "pronunciation": "dɪˈlɪʃəs",
+                "meaning": "Ngon, thơm ngon",
+                "example": "This cake is absolutely delicious!",
+                "exampleTranslation": "Chiếc bánh này thực sự rất ngon!",
+                "category": "ADJECTIVE",
+                "level": "BEGINNER",
+                "topic": "topic_food"
+            }
+        ]
+    },
+    {
+        "_id": "topic_travel",
+        "name": "Du lịch",
+        "nameEn": "Travel & Tourism",
+        "description": "Từ vựng về du lịch, phương tiện giao thông, địa điểm tham quan và các hoạt động khi đi du lịch.",
+        "icon": "https://cdn-media.sforum.vn/storage/app/media/ctv_seo10/nganh-du-lich-la-gi-thumbnail.jpg",
+        "color": "purple",
+        "gradientFrom": "from-purple-400",
+        "gradientTo": "to-pink-600",
+        "vocabularyCount": 1,
+        "level": "INTERMEDIATE",
+        "vocabularies": [
+            {
+                "_id": "travel-1",
+                "word": "Destination",
+                "pronunciation": "ˌdestɪˈneɪʃən",
+                "meaning": "Điểm đến",
+                "example": "Paris is a popular travel destination.",
+                "exampleTranslation": "Paris là một điểm đến du lịch phổ biến.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_travel"
+            }
+        ]
+    },
+    {
+        "_id": "topic_education",
+        "name": "Giáo dục",
+        "nameEn": "Education",
+        "description": "Từ vựng về học tập, trường học, các môn học và các hoạt động giáo dục.",
+        "icon": "https://cdn.thuvienphapluat.vn/phap-luat/2022-2/PNY/phat-trien-giao-duc-1.jpg",
+        "color": "indigo",
+        "gradientFrom": "from-indigo-400",
+        "gradientTo": "to-blue-600",
+        "vocabularyCount": 1,
+        "level": "BEGINNER",
+        "vocabularies": [
+            {
+                "_id": "edu-1",
+                "word": "Knowledge",
+                "pronunciation": "ˈnɒlɪdʒ",
+                "meaning": "Kiến thức, tri thức",
+                "example": "Reading books expands your knowledge.",
+                "exampleTranslation": "Đọc sách mở rộng kiến thức của bạn.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_education"
+            }
+        ]
+    },
+    {
+        "_id": "topic_health",
+        "name": "Sức khỏe",
+        "nameEn": "Health & Medicine",
+        "description": "Từ vựng về sức khỏe, bệnh tật, y tế và các hoạt động liên quan đến chăm sóc sức khỏe.",
+        "icon": "https://pacificcross.com.vn/wp-content/uploads/2023/06/Anh-huong-suc-khoe-3.jpeg",
+        "color": "red",
+        "gradientFrom": "from-red-400",
+        "gradientTo": "to-rose-600",
+        "vocabularyCount": 1,
+        "level": "INTERMEDIATE",
+        "vocabularies": [
+            {
+                "_id": "health-1",
+                "word": "Symptom",
+                "pronunciation": "ˈsɪmptəm",
+                "meaning": "Triệu chứng",
+                "example": "Fever is a common symptom of flu.",
+                "exampleTranslation": "Sốt là một triệu chứng phổ biến của cảm cúm.",
+                "category": "NOUN",
+                "level": "INTERMEDIATE",
+                "topic": "topic_health"
+            }
+        ]
+    }
+]

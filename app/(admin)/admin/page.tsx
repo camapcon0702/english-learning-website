@@ -26,42 +26,6 @@ export default function AdminPage() {
           </p>
         </div>
 
-        {/* Statistics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard
-            title="Tổng số người dùng"
-            value="1,234"
-            icon={<PeopleIcon className="w-6 h-6" />}
-            trend={{ value: 12.5, isPositive: true }}
-            description="Người dùng hoạt động"
-            gradient="blue"
-          />
-          <StatCard
-            title="Bài học đã tạo"
-            value="456"
-            icon={<BookIcon className="w-6 h-6" />}
-            trend={{ value: 8.3, isPositive: true }}
-            description="Tổng số bài học"
-            gradient="green"
-          />
-          <StatCard
-            title="Bài tập đã làm"
-            value="8,901"
-            icon={<AssessmentIcon className="w-6 h-6" />}
-            trend={{ value: 15.2, isPositive: true }}
-            description="Lượt làm bài tập"
-            gradient="purple"
-          />
-          <StatCard
-            title="Tỷ lệ hoàn thành"
-            value="87%"
-            icon={<TrendingUpIcon className="w-6 h-6" />}
-            trend={{ value: 5.1, isPositive: true }}
-            description="Trung bình hoàn thành"
-            gradient="orange"
-          />
-        </div>
-
         {/* Quick Actions Section */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -96,89 +60,6 @@ export default function AdminPage() {
               href="/admin/flashcard-management"
               color="purple"
             />
-          </div>
-        </div>
-
-        {/* Recent Activity Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Recent Users */}
-          <div className="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              Người dùng mới nhất
-            </h3>
-            <div className="space-y-4">
-              {[1, 2, 3, 4].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-semibold">
-                    U{item}
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-gray-900">
-                      Người dùng {item}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Đã tham gia {item} ngày trước
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* System Status */}
-          <div className="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              Trạng thái hệ thống
-            </h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-lg bg-green-50 border border-green-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                  <span className="font-semibold text-gray-900">
-                    Hệ thống hoạt động bình thường
-                  </span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">CPU Usage</span>
-                  <span className="font-semibold text-gray-900">45%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-green-500 h-2 rounded-full"
-                    style={{ width: "45%" }}
-                  />
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Memory Usage</span>
-                  <span className="font-semibold text-gray-900">62%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-blue-500 h-2 rounded-full"
-                    style={{ width: "62%" }}
-                  />
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Storage</span>
-                  <span className="font-semibold text-gray-900">78%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-orange-500 h-2 rounded-full"
-                    style={{ width: "78%" }}
-                  />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

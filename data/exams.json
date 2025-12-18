@@ -1,0 +1,90 @@
+[
+    {
+        "title": "Reading Test 1",
+        "description": "Reading",
+        "type": "READING",
+        "duration": 10,
+        "questionIds": [
+            "69414edf8a500c66589478d4",
+            "69414ee88a500c66589478d5",
+            "69414ef08a500c66589478d6",
+            "69414ef78a500c66589478d7",
+            "69414efe8a500c66589478d8",
+            "69414f098a500c66589478d9"
+        ],
+        "createdAt": {
+            "$date": "2025-12-16T16:00:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.Exam"
+    },
+    {
+        "title": "Reading Test 2",
+        "description": "Reading",
+        "type": "READING",
+        "duration": 10,
+        "questionIds": [
+            "69414f108a500c66589478da",
+            "69414f178a500c66589478db",
+            "69414f288a500c66589478dc",
+            "69414f338a500c66589478dd",
+            "6943b6238191b9fdc10b5c0a",
+            "6943b6238191b9fdc10b5c0b"
+        ],
+        "createdAt": {
+            "$date": "2025-12-16T16:05:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.Exam"
+    },
+    {
+        "title": "Reading Test 3",
+        "description": "Reading",
+        "type": "READING",
+        "duration": 10,
+        "questionIds": [
+            "6943b6238191b9fdc10b5c0c",
+            "6943b6238191b9fdc10b5c0d",
+            "6943b6238191b9fdc10b5c0e",
+            "6943b6238191b9fdc10b5c0f",
+            "6943b6238191b9fdc10b5c10",
+            "6943b6238191b9fdc10b5c11"
+        ],
+        "createdAt": {
+            "$date": "2025-12-16T16:10:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.Exam"
+    },
+    {
+        "title": "Reading Test 4",
+        "description": "Reading",
+        "type": "READING",
+        "duration": 10,
+        "questionIds": [
+            "6943b6238191b9fdc10b5c12",
+            "6943b6238191b9fdc10b5c13",
+            "6943b6238191b9fdc10b5c14",
+            "6943b6238191b9fdc10b5c15",
+            "6943b6238191b9fdc10b5c16"
+        ],
+        "createdAt": {
+            "$date": "2025-12-16T16:15:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.Exam"
+    },
+    {
+        "title": "Reading Test 5",
+        "description": "Reading",
+        "type": "READING",
+        "duration": 10,
+        "questionIds": [
+            "6943b6238191b9fdc10b5c17",
+            "6943b6238191b9fdc10b5c18",
+            "6943b6238191b9fdc10b5c19",
+            "6943b6238191b9fdc10b5c1a",
+            "6943b6238191b9fdc10b5c1b"
+        ],
+        "createdAt": {
+            "$date": "2025-12-16T16:20:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.Exam"
+    }
+]

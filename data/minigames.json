@@ -1,0 +1,234 @@
+[
+    {
+        "word": "elephant",
+        "suggest": "Động vật lớn sống trên cạn, có vòi",
+        "createdAt": {
+            "$date": "2025-12-18T07:47:36.306Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "tiger",
+        "suggest": "Loài thú ăn thịt, có sọc vằn, sống trong rừng",
+        "createdAt": {
+            "$date": "2025-12-18T07:48:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "lion",
+        "suggest": "Được mệnh danh là chúa tể rừng xanh",
+        "createdAt": {
+            "$date": "2025-12-18T07:48:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "giraffe",
+        "suggest": "Động vật có cổ rất dài, ăn lá cây",
+        "createdAt": {
+            "$date": "2025-12-18T07:48:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "monkey",
+        "suggest": "Động vật linh trưởng, thích leo trèo",
+        "createdAt": {
+            "$date": "2025-12-18T07:49:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "dog",
+        "suggest": "Vật nuôi trung thành, thường được nuôi trong nhà",
+        "createdAt": {
+            "$date": "2025-12-18T07:49:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "cat",
+        "suggest": "Vật nuôi nhỏ, thích bắt chuột",
+        "createdAt": {
+            "$date": "2025-12-18T07:49:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "horse",
+        "suggest": "Động vật dùng để cưỡi hoặc kéo xe",
+        "createdAt": {
+            "$date": "2025-12-18T07:50:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "cow",
+        "suggest": "Gia súc cung cấp sữa và thịt",
+        "createdAt": {
+            "$date": "2025-12-18T07:50:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "sheep",
+        "suggest": "Động vật nuôi lấy lông và thịt",
+        "createdAt": {
+            "$date": "2025-12-18T07:50:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "goat",
+        "suggest": "Gia súc nhỏ, thường được nuôi ở vùng núi",
+        "createdAt": {
+            "$date": "2025-12-18T07:51:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "pig",
+        "suggest": "Động vật nuôi để lấy thịt",
+        "createdAt": {
+            "$date": "2025-12-18T07:51:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "chicken",
+        "suggest": "Gia cầm nuôi để lấy trứng và thịt",
+        "createdAt": {
+            "$date": "2025-12-18T07:51:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "duck",
+        "suggest": "Gia cầm sống dưới nước, có mỏ bẹt",
+        "createdAt": {
+            "$date": "2025-12-18T07:52:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "fish",
+        "suggest": "Động vật sống dưới nước, thở bằng mang",
+        "createdAt": {
+            "$date": "2025-12-18T07:52:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "shark",
+        "suggest": "Cá lớn, ăn thịt, sống ở đại dương",
+        "createdAt": {
+            "$date": "2025-12-18T07:52:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "whale",
+        "suggest": "Động vật có vú lớn nhất sống dưới nước",
+        "createdAt": {
+            "$date": "2025-12-18T07:53:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "dolphin",
+        "suggest": "Động vật biển thông minh, thân thiện",
+        "createdAt": {
+            "$date": "2025-12-18T07:53:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "eagle",
+        "suggest": "Loài chim săn mồi, bay rất cao",
+        "createdAt": {
+            "$date": "2025-12-18T07:53:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "owl",
+        "suggest": "Loài chim hoạt động về đêm",
+        "createdAt": {
+            "$date": "2025-12-18T07:54:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "snake",
+        "suggest": "Động vật bò sát không có chân",
+        "createdAt": {
+            "$date": "2025-12-18T07:54:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "crocodile",
+        "suggest": "Bò sát lớn, sống ở sông và đầm lầy",
+        "createdAt": {
+            "$date": "2025-12-18T07:54:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "frog",
+        "suggest": "Động vật lưỡng cư, nhảy giỏi",
+        "createdAt": {
+            "$date": "2025-12-18T07:55:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "bee",
+        "suggest": "Côn trùng tạo ra mật ong",
+        "createdAt": {
+            "$date": "2025-12-18T07:55:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "butterfly",
+        "suggest": "Côn trùng có cánh đẹp, nhiều màu sắc",
+        "createdAt": {
+            "$date": "2025-12-18T07:55:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "ant",
+        "suggest": "Côn trùng nhỏ, sống theo bầy đàn",
+        "createdAt": {
+            "$date": "2025-12-18T07:56:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "spider",
+        "suggest": "Động vật tám chân, giăng tơ",
+        "createdAt": {
+            "$date": "2025-12-18T07:56:20.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "bear",
+        "suggest": "Động vật to lớn, sống trong rừng",
+        "createdAt": {
+            "$date": "2025-12-18T07:56:40.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    },
+    {
+        "word": "kangaroo",
+        "suggest": "Động vật có túi, nhảy xa, sống ở Úc",
+        "createdAt": {
+            "$date": "2025-12-18T07:57:00.000Z"
+        },
+        "_class": "com.nttmk.englishlearningserver.models.MiniGame"
+    }
+]

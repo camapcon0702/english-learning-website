@@ -8,6 +8,6 @@ export interface User {
     fullName: string;
     email: string;
     role: string;
-    createdAt?: string;
+    createdAt?: string | null;
     avatarUrl?: string;
 }

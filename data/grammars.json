@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Present continuous",
+        "description": "Thì hiện tại tiếp diễn",
+        "content": "<h1><strong>Present Continuous Tense</strong></h1><p>Dùng để diễn tả hành động đang xảy ra tại thời điểm nói.</p><h3>Công thức</h3><p><strong>Affirmative:</strong> S + am/is/are + V-ing</p><p><strong>Negative:</strong> S + am/is/are not + V-ing</p><p><strong>Question:</strong> Am/Is/Are + S + V-ing?</p><h3>Ví dụ</h3><p>I <strong>am studying</strong> English now.</p><p>They <strong>are playing</strong> football.</p>",
+        "_class": "com.nttmk.englishlearningserver.models.Grammar"
+    },
+    {
+        "name": "Past simple",
+        "description": "Thì quá khứ đơn",
+        "content": "<h1><strong>Past Simple Tense</strong></h1><p>Dùng để diễn tả hành động đã xảy ra và kết thúc trong quá khứ.</p><h3>Công thức</h3><p><strong>Affirmative:</strong> S + V2/ed</p><p><strong>Negative:</strong> S + did not + V</p><p><strong>Question:</strong> Did + S + V?</p><h3>Ví dụ</h3><p>I <strong>went</strong> to school yesterday.</p><p>She <strong>did not watch</strong> TV last night.</p>",
+        "_class": "com.nttmk.englishlearningserver.models.Grammar"
+    },
+    {
+        "name": "Future simple",
+        "description": "Thì tương lai đơn",
+        "content": "<h1><strong>Future Simple Tense</strong></h1><p>Dùng để diễn tả hành động sẽ xảy ra trong tương lai.</p><h3>Công thức</h3><p><strong>Affirmative:</strong> S + will + V</p><p><strong>Negative:</strong> S + will not + V</p><p><strong>Question:</strong> Will + S + V?</p><h3>Ví dụ</h3><p>I <strong>will travel</strong> next week.</p><p>She <strong>won’t come</strong> tomorrow.</p>",
+        "_class": "com.nttmk.englishlearningserver.models.Grammar"
+    },
+    {
+        "name": "Present perfect",
+        "description": "Thì hiện tại hoàn thành",
+        "content": "<h1><strong>Present Perfect Tense</strong></h1><p>Dùng để diễn tả hành động đã xảy ra và kết thúc trong quá khứ, nhưng có liên quan đến hiện tại.</p><h3>Công thức</h3><p><strong>Affirmative:</strong> S + have/has + V2/ed</p><p><strong>Negative:</strong> S + have/has not + V</p><p><strong>Question:</strong> Have/Has + S + V?</p><h3>Ví dụ</h3><p>I <strong>have eaten</strong> breakfast.</p><p>She <strong>has not seen</strong> the movie.</p>",
+        "_class": "com.nttmk.englishlearningserver.models.Grammar"
+    },
+    {
+        "name": "Passive voice",
+        "description": "Câu bị động",
+        "content": "<h1><strong>Passive Voice</strong></h1><p>Câu bị động dùng khi muốn nhấn mạnh hành động hơn là chủ thể.</p><h3>Công thức</h3><p><strong>Active:</strong> S + V + O</p><p><strong>Passive:</strong> O + be + V3/ed</p><h3>Ví dụ</h3><p>Active: She writes a letter.</p><p>Passive: A letter <strong>is written</strong> by her.</p>",
+        "_class": "com.nttmk.englishlearningserver.models.Grammar"
+    },
+    {
+        "name": "Comparison",
+        "description": "Câu so sánh",
+        "content": "<h1><strong>Comparisons in English</strong></h1><p>Dùng để so sánh tính chất giữa các đối tượng.</p><h3>So sánh hơn</h3><p>S + be + adj-er + than</p><p>Ví dụ: This book is <strong>cheaper</strong> than that one.</p><h3>So sánh nhất</h3><p>S + be + the + adj-est</p><p>Ví dụ: She is the <strong>tallest</strong> in the class.</p>",
+        "_class": "com.nttmk.englishlearningserver.models.Grammar"
+    }
+]
